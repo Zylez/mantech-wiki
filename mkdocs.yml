@@ -1,0 +1,22 @@
+site_name: ManTech Wiki
+site_url: https://man.servegame.com/ManTech-Wiki
+
+theme:
+  name: material
+  features:
+    - navigation.indexes
+
+plugins:
+  - search
+
+
+nav:
+  - Info: index.md
+  - Resource Pack: resource-pack/index.md
+
+markdown_extensions:
+  - attr_list  # For button styling
+  - admonition
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg

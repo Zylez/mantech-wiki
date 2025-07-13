@@ -8,6 +8,12 @@
 - **Online-Mode**: OFF → Cracked clients supported  
 - **World Type**: Unrestricted wilderness (build/mine/PvP everywhere)  
 
+## Server Status
+
+<div id="serverstatus">
+    <p><b>Checking server status...</b></p>
+</div>
+
 ## Core Principles
 
 ### 1. Radical Freedom  

@@ -9,6 +9,8 @@ theme:
 plugins:
   - search
 
+extra_javascript:
+  - script.js
 
 nav:
   - Info: index.md

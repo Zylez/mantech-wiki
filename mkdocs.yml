@@ -13,7 +13,8 @@ extra_javascript:
   - script.js
 
 nav:
-  - Info: index.md
+  - General: index.md
+  - FAQ: faq/index.md
   - Resource Pack: resource-pack/index.md
 
 markdown_extensions:

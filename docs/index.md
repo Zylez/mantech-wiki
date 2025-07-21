@@ -26,7 +26,35 @@
 
 ### 3. Death & Consequences  
 - Inventory drops fully on death (standard behavior)  
-- Griefing/theft is legal unless explicitly prevented  
+- Griefing/theft is legal unless explicitly prevented
+
+## VentureChat Commands
+
+### Core Chat Commands
+
+| Command | Description |
+|---------|-------------|
+| `/vmessage <player> <message>` | Private message another player |
+| `/vreply <message>` | Reply to last private message |
+| `/vignore <player>` | Ignore messages from a player |
+
+### Channel Management
+
+| Command | Description |
+|---------|-------------|
+| `/vchannel join <channel>` | Join a chat channel |
+| `/vchannel leave <channel>` | Leave a chat channel |
+| `/vch list` | List available channels |
+| `/vch who <channel>` | See who's in a channel |
+
+### Party System (Basic)
+
+| Command | Description |
+|---------|-------------|
+| `/vparty host` | Host a new party or un-host |
+| `/vparty chat` | Toggle chat autosend |
+| `/vparty leave` | Leave current party |
+| `/vparty kick` | Kick party member |
 
 ## Exceptional Permissions (Rare & Personalized)
 

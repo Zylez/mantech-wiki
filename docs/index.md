@@ -20,15 +20,11 @@
 - PvP, building, and raiding allowed EVERYWHERE  
 - No safe zones or protected territories exist by default  
 
-### 2. Land Control  
-- Claims only provide temporary build protection  
-- **No permanent safety**: All territory is raid-eligible  
-
-### 3. Ideological Tolerance  
+### 2. Ideological Tolerance  
 - Extreme political/ideological views are permitted in global chat  
 - **Hard boundary**: No targeting individuals with slurs, threats, or sustained harassment  
 
-### 4. Death & Consequences  
+### 3. Death & Consequences  
 - Inventory drops fully on death (standard behavior)  
 - Griefing/theft is legal unless explicitly prevented  
 
@@ -54,49 +50,3 @@
 - **Primary Method**: Chat/world isolation  
 - **Third-Party Harassment**  
   - Evidence of off-server attacks (DMs, forums, etc.) = permanent cross-platform ban  
-
-## Faction Land Warfare System
-
-Powered by SaberFactions (v1.8) - available to ALL players  
-
-!!! success "Radical wilderness twist"
-    Claims aren't safe zones - they're battle flags!
-
-### Core Mechanics
-
-- **Claiming Land**: Stake territory for your faction  
-- **Raiding**: Destroy/overclaim enemy territory  
-- **Hardcore Rules**:  
-  - No claim immunity during raids  
-  - No build protection in war zones  
-
-### Essential Commands
-
-| Action | Command | Notes |
-|--------|---------|-------|
-| **Create Faction** | `/f create <name>` | Costs 500 XP |
-| **Claim Chunk** | `/f claim` | 16x16 area at your location |
-| **Declare Raid** | `/f declarewar <faction>` | 10-minute raid prep |
-| **Overclaim Land** | `/f overclaim` | Destroy weakened enemy claim |
-| **Check Strength** | `/f map` | Shows nearby claims & vulnerability |
-| [View all commands...](https://factions.support/commands/	) |
-
-### Raiding Protocol
-
-1. **Declare war** → Triggers 10-min PvP immunity period  
-2. **Damage claims** → Break blocks in enemy territory to reduce "faction power"  
-3. **Overclaim** → Use `/f overclaim` when power drops below 10%  
-4. **Consequences** →  
-   - Successful raid: Claim ownership transfers  
-   - Failed raid: Attacking faction loses 30% power  
-
-## Technical Environment
-
-Plugins:  
-  - SaberFactions v1.8 (core land warfare)  
-  - MythicMobs (custom mobs)  
-  - ModelEngine (animated models)  
-Hardcore Features:  
-  - Raiding enabled  
-  - Claim vulnerability: 100%  
-  - New claim cooldown: 2 hours    

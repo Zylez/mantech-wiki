@@ -79,6 +79,7 @@ Powered by SaberFactions (v1.8) - available to ALL players
 | **Declare Raid** | `/f declarewar <faction>` | 10-minute raid prep |
 | **Overclaim Land** | `/f overclaim` | Destroy weakened enemy claim |
 | **Check Strength** | `/f map` | Shows nearby claims & vulnerability |
+| [View all commands...](https://factions.support/commands/	) |
 
 ### Raiding Protocol
 

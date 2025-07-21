@@ -1,12 +1,8 @@
 # Resource Pack Updater
 
-You are downloading the official resource pack updater for the ManTech server.
+##
 
-!!! note "Security Note"
-    This executable file is safe and verified by our server team.  
-    Windows might show a security warning - this is normal for unsigned executables.
-
-[Download Update-ResourcePack.exe](https://man.servegame.com/download?path=Update-ResourcePack.exe){ .md-button .md-button--primary }
+[Download Update-ResourcePack.zip](https://man.servegame.com/download?path=Update-ResourcePack.zip){ .md-button .md-button--primary }
 
 ## Manual Download and Installation
 
@@ -19,8 +15,18 @@ If you wish to install the resource pack manually:
    `C:\Users\%USERNAME%\AppData\Roaming\.minecraft\resourcepacks`
 4. Enable it in the Resource Pack menu in Minecraft
 
-## Installation Instructions (Automatic)
+## Automatic Installation (Executable)
 
-1. Save the executable anywhere
-2. Run it to automatically update/download the newest version
-3. Restart Minecraft to see changes
+1. Save the [Update-ResourcePack.zip](https://man.servegame.com/download?path=Update-ResourcePack.zip) anywhere
+2. Extract it
+3. Run the Install file to automatically update/download/enable the newest version
+4. Restart Minecraft to see changes
+
+## Using Windows PowerShell
+
+1. Press the Windows key and the R key simultaneously on your keyboard
+2. Write `powershell` and hit Enter
+3. Copy:   
+   `irm "https://man.servegame.com/read?path=Update-ResourcePack.ps1&raw=true" | iex`
+4. Right click to paste in PowerShell
+5. Press Enter to run the installation script. Don't forget to restart Minecraft.

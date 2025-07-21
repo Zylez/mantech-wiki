@@ -3,6 +3,8 @@ site_url: https://man.servegame.com/ManTech-Wiki
 
 theme:
   name: material
+  palette:
+    scheme: slate
   features:
     - navigation.indexes
 

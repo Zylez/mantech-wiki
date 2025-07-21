@@ -4,7 +4,7 @@
 
 - **Type**: Vanilla → PaperMC server with plugins  
 - **IP**: `man.serveminecraft.net`  
-- **Version**: 1.21.7 (24/7)  
+- **Version**: 1.21.8 (24/7)  
 - **Online-Mode**: OFF → Cracked clients supported  
 - **World Type**: Unrestricted wilderness (build/mine/PvP everywhere)  
 

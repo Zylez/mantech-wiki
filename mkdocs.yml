@@ -3,6 +3,7 @@ site_url: https://man.servegame.com/ManTech-Wiki
 
 theme:
   name: material
+  logo: logo.png
   palette:
     scheme: slate
     primary: pink

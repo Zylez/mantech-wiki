@@ -1,3 +1,7 @@
+!!! warning
+    The server computer occasionally loses connection due to firmware-related issues.
+    We're actively working on solving this problem as soon as possible.
+
 # Server Fundamentals
 
 ## Basic Information

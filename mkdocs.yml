@@ -6,7 +6,7 @@ theme:
   logo: logo.png
   palette:
     scheme: slate
-    primary: pink
+    primary: black
   features:
     - navigation.indexes
 

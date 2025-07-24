@@ -44,10 +44,9 @@
 
 | Command | Description |
 |---------|-------------|
-| `/vchannel join <channel>` | Join a chat channel |
-| `/vchannel leave <channel>` | Leave a chat channel |
-| `/vch list` | List available channels |
-| `/vch who <channel>` | See who's in a channel |
+| `/vchannel <channel>` | Join a chat channel |
+| `/vchlist` | List available channels |
+| `/vchwho <channel>` | See who's in a channel |
 
 ### Party System (Basic)
 

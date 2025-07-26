@@ -7,8 +7,8 @@
 ### Are we interested in expanding the range of our advertisement?
 - Not at the moment for reasons answered in the question prior.
 
-### Why is the webpage so scuffed?
-- Because the server is too cool and we like things balanced.
+### Do I need the resource pack?
+- No, not at all. It's used to render ModelEngine entities, but they are only used for testing purposes at the moment.
 
 ### Is there a Discord server?
 - Yes, there is. However, invitations are only handed out individually and personally. You may ask any moderator for an invite. While there is an #activity channel, neither your chat or commands are visible there.

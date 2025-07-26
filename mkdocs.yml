@@ -19,7 +19,7 @@ extra_javascript:
 nav:
   - General: index.md
   - FAQ: faq/index.md
-  - Resource Pack: resource-pack/index.md
+  - Resource Pack (optional): resource-pack/index.md
 
 markdown_extensions:
   - attr_list  # For button styling

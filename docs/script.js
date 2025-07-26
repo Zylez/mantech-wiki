@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <ul>
                         <li><p><b>Status:</b> <span style="color: green;">Online</span></p></li>
                         <li><p><b>Players:</b> ${data.player_count}</p></li>
+                        <li><p><b>Player last online:</b> ${data.time_since_last_player_formatted}</p></li>
                         <li><p><b>IP:</b> ${data.server_ip}</p></li>
                     </ul>
                 `;

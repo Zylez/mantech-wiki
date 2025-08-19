@@ -20,6 +20,7 @@ nav:
   - General: index.md
   - FAQ: faq/index.md
   - Resource Pack (optional): resource-pack/index.md
+  - Support: support/index.md
 
 markdown_extensions:
   - attr_list  # For button styling

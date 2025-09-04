@@ -5,7 +5,6 @@
 ## Basic Information
 
 - **Type**: Vanilla → PaperMC server with plugins  
-- **IP**: `man.serveminecraft.net`  
 - **Version**: 1.21.8 (24/7)  
 - **Online-Mode**: OFF → Cracked clients supported  
 - **World Type**: Unrestricted wilderness (build/mine/PvP everywhere)  
@@ -15,6 +14,85 @@
 <div id="serverstatus">
     <p><b>Checking server status...</b></p>
 </div>
+
+<div id="discord-activity-container">
+    <div class="discord-header">
+        <span class="discord-title">Recent Server Activity</span>
+        <span class="discord-count" id="discord-count">Loading...</span>
+    </div>
+    <div class="discord-messages" id="discord-messages">
+        <p>Loading Discord activity...</p>
+    </div>
+</div>
+
+<style>
+.discord-activity-container {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+}
+
+.discord-header {
+    background-color: var(--md-primary-fg-color);
+    color: white;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discord-title {
+    font-weight: 600;
+}
+
+.discord-count {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.discord-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 0.5rem;
+    background-color: var(--md-default-bg-color);
+}
+
+.discord-message {
+    padding: 0.6rem 0.8rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.discord-message:last-child {
+    border-bottom: none;
+}
+
+.discord-timestamp {
+    color: var(--md-default-fg-color--light);
+    font-size: 0.8rem;
+    margin-bottom: 0.2rem;
+}
+
+/* Scrollbar styling */
+.discord-messages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.discord-messages::-webkit-scrollbar-track {
+    background: var(--md-default-bg-color);
+}
+
+.discord-messages::-webkit-scrollbar-thumb {
+    background: var(--md-default-fg-color--lightest);
+    border-radius: 3px;
+}
+
+.discord-messages::-webkit-scrollbar-thumb:hover {
+    background: var(--md-default-fg-color--light);
+}
+</style>
 
 ## Core Principles
 

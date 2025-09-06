@@ -18,6 +18,7 @@ extra_javascript:
 
 nav:
   - General: index.md
+  - Rewards: rewards/index.md
   - FAQ: faq/index.md
   - Resource Pack (optional): resource-pack/index.md
   - Support: support/index.md
@@ -25,6 +26,7 @@ nav:
 markdown_extensions:
   - attr_list  # For button styling
   - admonition
+  - md_in_html
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg

@@ -13,5 +13,6 @@ Rewards are items and blocks that can automatically be obtained in our Minecraft
 <div class="grid cards" markdown>
 
 - [Minecraft ServerList](https://minecraft-serverlist.com/server/2941/vote)
+- [Minecraft Servers gg](https://minecraft-servers.gg/server/7043-man-serveminecraft-net/vote)
 
 </div>

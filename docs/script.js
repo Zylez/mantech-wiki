@@ -73,7 +73,7 @@ function getServerStatus() {
                 statusDiv.innerHTML = `
                     <ul>
                         <li><p><b>Status:</b> <span style="color: green;">Online</span></p></li>
-                        <li><p><b>Players:</b> ${data.player_count}</p></li>
+                        <li><p><b>Players online:</b> ${data.player_count}</p></li>
                         <li><p><b>IP:</b> ${data.server_ip}</p></li>
                     </ul>
                 `;

@@ -7,15 +7,15 @@ If you need assistance with the Minecraft server, please note:
 !!! warning "Important Notice"
     For general server questions or issues, please ask in the appropriate Discord channels first.
 
-### Password Recovery
+### Recovery
 
-If you have forgotten your server login password, you are advised to contact:
+If you have lost progress or forgotten your server login password, you are advised to contact:
 
 <div class="spoiler">
     <button class="spoiler-button" onclick="toggleSpoiler(this)">Click to reveal contact</button>
     <div class="spoiler-content">
         <p><strong>Discord:</strong> @auzer</p>
-        <p>Please mention that you need help with password recovery for the Minecraft server.</p>
+        <p>Please mention that you need help with the respective problems in our Minecraft server.</p>
     </div>
 </div>
 

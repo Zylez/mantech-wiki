@@ -108,6 +108,49 @@
 - Inventory drops fully on death (standard behavior)  
 - Griefing/theft is legal unless explicitly prevented
 
+## Fundamental Commands
+
+| Command | Description |
+|---------|-------------|
+| `/sethome` | Set home to your current location |
+| `/home` | Teleport to your home |
+| `/back` | Teleports you to your location prior to tp/spawn/warp |
+
+## BetterTeams Commands
+
+| Command | Description |
+|---------|-------------|
+| `/team ally <team>` | Request/accept an alliance with another team |
+| `/team allychat [message]` | Send a message visible only to allies |
+| `/team bal` | View your team's balance |
+| `/team baltop` | View the richest teams |
+| `/team ban <player>` | Ban a player from your team |
+| `/team chat [message]` | Send message to team chat or toggle chat mode |
+| `/team color <color>` | Change your team's name color |
+| `/team create <team>` | Create a new team |
+| `/team delhome` | Delete your team's home location |
+| `/team demote <player>` | Demote a team member |
+| `/team description <description>` | Change your team's description |
+| `/team disband` | Disband your team (irreversible) |
+| `/team echest` | Access your team's ender chest |
+| `/team info [team/player]` | View team information |
+| `/team invite <player>` | Invite a player to your team |
+| `/team join <team>` | Join a specific team |
+| `/team kick <player>` | Kick a player from your team |
+| `/team leave` | Leave your current team |
+| `/team list` | List available commands |
+| `/team name <name>` | Change your team's name |
+| `/team neutral <team>` | Remove an alliance with a team |
+| `/team open` | Toggle open/invite-only membership |
+| `/team promote <player>` | Promote a team member |
+| `/team pvp` | Toggle PVP between team members |
+| `/team rank [team]` | View a team's rank |
+| `/team rankup` | Advance your team to next level |
+| `/team tag` | Change your team's tag |
+| `/team title <player> <title>` | Change a member's title |
+| `/team top` | View the top teams |
+| `/team unban <player>` | Unban a player from your team |
+
 ## VentureChat Commands
 
 ### Core Chat Commands

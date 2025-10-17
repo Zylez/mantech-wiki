@@ -4,8 +4,7 @@
 
 ## Basic Information
 
-- **Type**: Vanilla → PaperMC server with plugins  
-- **Version**: 1.21.8 (24/7)  
+- **Type**: Vanilla → PaperMC server with plugins (24/7)
 - **Online-Mode**: OFF → Cracked clients supported  
 - **World Type**: Unrestricted wilderness (build/mine/PvP everywhere)  
 
@@ -115,6 +114,10 @@
 | `/sethome` | Set home to your current location |
 | `/home` | Teleport to your home |
 | `/back` | Teleports you to your location prior to tp/spawn/warp |
+| `/tpa` | Request to teleport to player |
+| `/tpahere` | Request player teleport to you |
+| `/inspect` | Toggle grief inspection mode |
+| `/rtp ` | Teleport randomly away from spawn |
 
 ## BetterTeams Commands
 
@@ -177,23 +180,6 @@
 | `/vparty chat` | Toggle chat autosend |
 | `/vparty leave` | Leave current party |
 | `/vparty kick` | Kick party member |
-
-## Exceptional Permissions (Rare & Personalized)
-
-!!! note
-    Granted **only** by owners for **genuine accessibility needs**, not gameplay advantage.
-
-- **Non-faction protections**  
-  - Prevents block destruction *in a limited area* (not PvP immunity)  
-- **Keep-Inventory**  
-  - Applies *only* to death (XP still drops)  
-- **Separation Safeguards**  
-  - Forced chat/world isolation during irreconcilable conflicts  
-- **Limits**  
-  - Players granted any of these privileges may not use them to their advantage for griefing  
-
-!!! warning "Owner discretion only"
-    No public applications. Discuss privately via DM.
 
 ## Conflict Resolution
 

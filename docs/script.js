@@ -75,6 +75,7 @@ function getServerStatus() {
                         <li><p><b>Status:</b> <span style="color: green;">Online</span></p></li>
                         <li><p><b>Players online:</b> ${data.player_count}</p></li>
                         <li><p><b>IP:</b> ${data.server_ip}</p></li>
+                        <li><p><b>Version:</b> ${data.version}</p></li>
                     </ul>
                 `;
             } else {

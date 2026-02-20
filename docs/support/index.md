@@ -2,11 +2,6 @@
 
 ## Server Support
 
-If you need assistance with the Minecraft server, please note:
-
-!!! warning "Important Notice"
-    For general server questions or issues, please ask in the appropriate Discord channels first.
-
 ### Recovery
 
 If you have lost progress or forgotten your server login password, you are advised to contact:

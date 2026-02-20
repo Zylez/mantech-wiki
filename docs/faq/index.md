@@ -1,17 +1,21 @@
 # Frequently Asked Questions
 
 ## General
-### Do we have any plans for increasing the player limit?
-- Not a the moment. As our playerbase grows, we intend to gradually increase the resources dedicated to the server, but only to a limit that feels appropriate. 'We', being the ones responsible for the server, are only ready to increase our responsibility of the server to personal levels of preference. With that being said, we're still exploring our limits. As for the hardware resources, we're satisfied with our current workload being manageable with active number players being within the 50-100 range for reasons stated above.
 
-### Are we interested in expanding the range of our advertisement?
-- Not at the moment for reasons answered in the question prior.
+### Who runs the server?
+The server is owned and operated exclusively by **Auzer1** and **FunOD**. There are no other moderators, admins, or staff members. If someone in-game claims they have "staff powers," they are attempting to deceive you.
+
+### Is there an official Discord?
+**No.** There is no official Discord server, nor are there plans to create one. While many player-run communities exists, none of them are moderated or sanctioned by us. We do not participate in, or take responsibility for, any external community drama.
+
+### Is cheating/exploiting allowed?
+Exploiting isn't punishable but is automatically prevented by the AntiCheat. Any exploits that bypasses the AntiCheat aren't punishable either.
+
+### Do we have any plans for increasing the player limit?
+Not at the moment. We prefer to keep the server manageable and within a resource range that we can personally oversee. Currently, we are satisfied with a 50–100 player range.
+
+### Are we interested in expanding advertisement?
+No. We prefer organic growth. The server’s direction is dictated by our personal preferences and the current hardware workload, not by a desire for a massive player count.
 
 ### Do I need the resource pack?
-- No, not at all. It's used to render ModelEngine entities, but they are only used for testing purposes at the moment.
-
-### Is there a Discord server?
-- Yes, there is. However, invitations are only handed out individually and personally. You may ask any moderator for an invite. While there is an #activity channel, neither your chat or commands are visible there.
-
-### More to be added!
-Please go ahead and ask!
+No. It is currently only used for testing ModelEngine entities. You can ignore it without missing out on the core gameplay experience.

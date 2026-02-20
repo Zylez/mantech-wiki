@@ -20,7 +20,7 @@
         <span class="discord-count" id="discord-count">Loading...</span>
     </div>
     <div class="discord-messages" id="discord-messages">
-        <p>Loading Discord activity...</p>
+        <p>Loading server activity...</p>
     </div>
 </div>
 
@@ -96,90 +96,24 @@
 ## Core Principles
 
 ### 1. Radical Freedom  
-- PvP, building, and raiding allowed EVERYWHERE  
-- No safe zones or protected territories exist by default  
+- PvP, building, and raiding allowed EVERYWHERE.  
+- No safe zones or protected territories exist by default.  
 
 ### 2. Ideological Tolerance  
-- Extreme political/ideological views are permitted in global chat  
-- **Hard boundary**: No targeting individuals with slurs, threats, or sustained harassment  
+- Extreme political/ideological views are permitted in global chat.  
+- **Hard boundary**: No targeting groups or individuals with slurs, threats, or sustained harassment.  
 
 ### 3. Death & Consequences  
-- Inventory drops fully on death (standard behavior)  
-- Griefing/theft is legal unless explicitly prevented
+- Inventory drops fully on death (standard behavior).  
+- Griefing/theft is legal.
 
-## Fundamental Commands
+### 4. Absolute Independence
+- This server has **no official Discord**, no official guilds, and no "partnered" communities.
+- Any group claiming to represent the server administration is unofficial and unaffiliated.
 
-| Command | Description |
-|---------|-------------|
-| `/sethome` | Set home to your current location |
-| `/home` | Teleport to your home |
-| `/back` | Teleports you to your location prior to tp/spawn/warp |
-| `/tpa` | Request to teleport to player |
-| `/tpahere` | Request player teleport to you |
-| `/inspect` | Toggle grief inspection mode |
-| `/rtp ` | Teleport randomly away from spawn |
-
-## BetterTeams Commands
-
-| Command | Description |
-|---------|-------------|
-| `/team ally <team>` | Request/accept an alliance with another team |
-| `/team allychat [message]` | Send a message visible only to allies |
-| `/team bal` | View your team's balance |
-| `/team baltop` | View the richest teams |
-| `/team ban <player>` | Ban a player from your team |
-| `/team chat [message]` | Send message to team chat or toggle chat mode |
-| `/team color <color>` | Change your team's name color |
-| `/team create <team>` | Create a new team |
-| `/team delhome` | Delete your team's home location |
-| `/team demote <player>` | Demote a team member |
-| `/team description <description>` | Change your team's description |
-| `/team disband` | Disband your team (irreversible) |
-| `/team echest` | Access your team's ender chest |
-| `/team info [team/player]` | View team information |
-| `/team invite <player>` | Invite a player to your team |
-| `/team join <team>` | Join a specific team |
-| `/team kick <player>` | Kick a player from your team |
-| `/team leave` | Leave your current team |
-| `/team list` | List available commands |
-| `/team name <name>` | Change your team's name |
-| `/team neutral <team>` | Remove an alliance with a team |
-| `/team open` | Toggle open/invite-only membership |
-| `/team promote <player>` | Promote a team member |
-| `/team pvp` | Toggle PVP between team members |
-| `/team rank [team]` | View a team's rank |
-| `/team rankup` | Advance your team to next level |
-| `/team tag` | Change your team's tag |
-| `/team title <player> <title>` | Change a member's title |
-| `/team top` | View the top teams |
-| `/team unban <player>` | Unban a player from your team |
-
-## VentureChat Commands
-
-### Core Chat Commands
-
-| Command | Description |
-|---------|-------------|
-| `/vmessage <player> <message>` | Private message another player |
-| `/vreply <message>` | Reply to last private message |
-| `/vignore <player>` | Ignore messages from a player |
-
-### Channel Management
-
-| Command | Description |
-|---------|-------------|
-| `/vchannel <channel>` | Join a chat channel |
-| `/vchlist` | List available channels |
-| `/vchwho <channel>` | See who's in a channel |
-
-### Party System (Basic)
-
-| Command | Description |
-|---------|-------------|
-| `/vparty host` | Host a new party or un-host |
-| `/vparty chat` | Toggle chat autosend |
-| `/vparty leave` | Leave current party |
-| `/vparty kick` | Kick party member |
+### 5. Verified Authority
+- There are only two individuals with administrative power: **Auzer1** and **FunOD**. 
+- Anyone else claiming to be a moderator, "helper," or staff member is lying. We do not use "hidden" or "alt" staff accounts for moderation.
 
 ## Conflict Resolution
 

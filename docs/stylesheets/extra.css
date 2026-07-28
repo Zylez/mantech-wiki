@@ -402,36 +402,3 @@ details.announcement > summary.announcement-summary:focus-visible {
 .md-typeset .grid > .card {
     border-radius: 10px;
 }
-
-/* =====================================================================
-   7. Cobblemon-branch overrides — Pokémon-themed accents
-   ===================================================================== */
-
-.activity-header {
-    background:
-        linear-gradient(
-            to bottom,
-            var(--md-primary-fg-color) 0%,
-            var(--md-primary-fg-color) 48%,
-            rgba(255, 255, 255, 0.9) 48%,
-            rgba(255, 255, 255, 0.9) 52%,
-            #222 52%,
-            #222 100%
-        );
-    color: #fff;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-}
-
-.activity-count {
-    background: var(--md-accent-fg-color, #facc15);
-    color: #1a1a1a;
-    text-shadow: none;
-    font-weight: 700;
-}
-
-.md-typeset .grid.cards > :is(ul, ol) > li:hover,
-.md-typeset .grid > .card:hover {
-    border-color: var(--md-accent-fg-color);
-    transform: translateY(-2px);
-    transition: transform 0.15s ease, border-color 0.15s ease;
-}

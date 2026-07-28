@@ -1,8 +1,8 @@
-site_name: Very Cool Anarchy Server
+site_name: Very Cool Cobblemon Server
 site_url: https://zylez.github.io/mantech-wiki/
 site_description: >-
-  The official website for the Very Cool Anarchy Server —
-  server status, live activity, news, rules, and support.
+  The official website for the Very Cool Cobblemon Server —
+  server status, live activity, news, install guide, rules, and support.
 
 # -------------------------------------------------------------------
 # Theme
@@ -13,19 +13,19 @@ theme:
   favicon: assets/logo.png
 
   palette:
-    # Dark mode (default)
+    # Dark mode (default) — Pokeball red primary
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: black
-      accent: amber
+      primary: red
+      accent: yellow
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
     # Light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: black
-      accent: amber
+      primary: red
+      accent: yellow
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
@@ -35,7 +35,6 @@ theme:
     code: JetBrains Mono
 
   features:
-    # Navigation
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
@@ -44,13 +43,10 @@ theme:
     - navigation.tracking
     - navigation.indexes
     - navigation.footer
-    # Table of contents
     - toc.follow
-    # Content
     - content.code.copy
     - content.code.annotate
     - content.tooltips
-    # Search
     - search.suggest
     - search.highlight
     - search.share
@@ -93,7 +89,6 @@ plugins:
 # Markdown extensions
 # -------------------------------------------------------------------
 markdown_extensions:
-  # Core
   - abbr
   - attr_list
   - md_in_html
@@ -102,17 +97,15 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-
-  # PyMdown Extensions
-  - pymdownx.details            # Collapsible admonitions (???)
+  - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.snippets           # Shared content across pages
-  - pymdownx.keys               # Keyboard shortcut styling
+  - pymdownx.snippets
+  - pymdownx.keys
   - pymdownx.mark
   - pymdownx.caret
   - pymdownx.tilde
@@ -130,12 +123,16 @@ markdown_extensions:
 
 # -------------------------------------------------------------------
 # Navigation
+#   The Cobblemon build adds an "Install" section right after Home so
+#   new players can find the modpack setup instructions immediately.
+#   Rewards is dropped (voting rewards may not be set up on the new
+#   server yet — re-add it later if you enable them).
 # -------------------------------------------------------------------
 nav:
   - Home: index.md
+  - Install: install/index.md
   - News: news/index.md
   - Rules: rules/index.md
-  - Rewards: rewards/index.md
   - Resource Packs: resource-packs/index.md
   - FAQ: faq/index.md
   - Support: support/index.md

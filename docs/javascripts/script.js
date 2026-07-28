@@ -1,7 +1,8 @@
 /* =====================================================================
    Very Cool Anarchy Server — front-end script
    - Fetches live server status and renders it
-   - Fetches announcements and collapses long ones behind "Read more"
+   - Fetches announcements: each is a title-collapsible; the whole
+     section also has a "Collapse all / Expand all" toggle
    - Fetches recent server activity and renders it with icons + relative
      timestamps
    ===================================================================== */
@@ -12,13 +13,12 @@ const API_BASE = 'https://man.servegame.com/api';
 const STATUS_ENDPOINT   = `${API_BASE}/minecraft-status`;
 const ACTIVITY_ENDPOINT = `${API_BASE}/discord-activity`;
 
-// Any announcement whose visible text exceeds this length gets collapsed
-// behind a "Read more" toggle. Tune to taste.
-const ANNOUNCEMENT_PREVIEW_CHARS = 220;
+// Announcements shorter than this render pre-expanded so quick notices
+// don't force an extra click; long ones start collapsed.
+const ANNOUNCEMENT_AUTO_OPEN_CHARS = 220;
 
 // ---- Utilities --------------------------------------------------------
 
-/** Escape a string for safe use as HTML text content. */
 function escapeHtml(text) {
     const div = document.createElement('div');
     div.textContent = text ?? '';
@@ -39,19 +39,15 @@ function sanitizeAnnouncementHtml(html) {
     const template = document.createElement('template');
     template.innerHTML = String(html ?? '');
     const walk = (node) => {
-        // Iterate over a snapshot because we may remove children
         [...node.childNodes].forEach(child => {
             if (child.nodeType === Node.ELEMENT_NODE) {
                 if (!allowedTags.has(child.tagName)) {
-                    // Replace disallowed element with its text content
                     const text = document.createTextNode(child.textContent);
                     child.replaceWith(text);
                     return;
                 }
-                // Strip all attributes except href/title on links
                 [...child.attributes].forEach(attr => {
                     if (child.tagName === 'A' && (attr.name === 'href' || attr.name === 'title')) {
-                        // Only allow http(s) and relative links
                         if (attr.name === 'href') {
                             const v = attr.value.trim();
                             const isSafe = /^(https?:|mailto:|\/|#)/i.test(v);
@@ -61,7 +57,6 @@ function sanitizeAnnouncementHtml(html) {
                         child.removeAttribute(attr.name);
                     }
                 });
-                // Ensure external links open safely
                 if (child.tagName === 'A' && child.getAttribute('href')) {
                     child.setAttribute('rel', 'noopener noreferrer');
                     child.setAttribute('target', '_blank');
@@ -74,50 +69,12 @@ function sanitizeAnnouncementHtml(html) {
     return template.innerHTML;
 }
 
-/** Approximate visible-text length of an HTML string. */
 function textLength(html) {
     const div = document.createElement('div');
     div.innerHTML = String(html ?? '');
     return (div.textContent || '').trim().length;
 }
 
-/**
- * Split HTML content into a short preview + a remainder. The preview is
- * taken from the first paragraph/line-break boundary that fits under the
- * character budget; if none exists, it's taken from a raw text cut.
- */
-function splitForPreview(html, budget) {
-    const container = document.createElement('div');
-    container.innerHTML = String(html ?? '');
-    // Walk top-level children until we exceed the budget
-    const previewNodes = [];
-    let charCount = 0;
-    for (const node of [...container.childNodes]) {
-        const text = (node.textContent || '').trim();
-        if (charCount + text.length > budget && previewNodes.length > 0) {
-            // We already have some preview; stop here
-            break;
-        }
-        previewNodes.push(node.cloneNode(true));
-        charCount += text.length;
-        if (charCount >= budget) break;
-    }
-    const previewDiv = document.createElement('div');
-    previewNodes.forEach(n => previewDiv.appendChild(n));
-
-    // Figure out what remains
-    const remainderDiv = container.cloneNode(true);
-    // Remove the first `previewNodes.length` top-level children from remainder
-    for (let i = 0; i < previewNodes.length; i++) {
-        if (remainderDiv.firstChild) remainderDiv.removeChild(remainderDiv.firstChild);
-    }
-    return {
-        preview:   previewDiv.innerHTML,
-        remainder: remainderDiv.innerHTML.trim()
-    };
-}
-
-/** Convert an ISO date into a friendly relative string. */
 function formatRelativeTime(iso) {
     const ts = new Date(iso).getTime();
     if (Number.isNaN(ts)) return '';
@@ -131,18 +88,11 @@ function formatRelativeTime(iso) {
     const day = Math.round(hr / 24);
     if (day === 1)  return 'yesterday';
     if (day < 7)    return `${day}d ago`;
-    // For older messages, show the actual date
     return new Date(iso).toLocaleDateString(undefined, {
         month: 'short', day: 'numeric'
     });
 }
 
-/**
- * Classify an activity message into one of our icon categories based on
- * its content. Keyword matching is intentionally loose — anything the
- * server sends about players entering/leaving/dying will still land in
- * a sensible bucket.
- */
 function classifyActivity(content) {
     const t = (content || '').toLowerCase();
     if (/(joined|connected|logged in|has entered)/.test(t))   return { kind: 'join',   icon: '↗' };
@@ -154,40 +104,89 @@ function classifyActivity(content) {
 }
 
 // ---- Announcements ----------------------------------------------------
+//
+// Each announcement renders as a <details> element styled like a Material
+// admonition. The <summary> row is always visible and shows the title +
+// a subtle open/close chevron. Clicking it toggles the body.
+//
+// The whole announcements section also gets a header with a
+// "Collapse all / Expand all" button so returning visitors can hide the
+// whole block in a single click.
 
 function renderAnnouncement(item) {
     const type   = item.type || 'note';
     const title  = escapeHtml(item.title || 'Announcement');
     const safeContent = sanitizeAnnouncementHtml(item.content || '');
-    const wrapper = document.createElement('div');
-    wrapper.className = `admonition ${type} announcement`;
 
-    // If the content fits within the preview budget, render it inline.
-    if (textLength(safeContent) <= ANNOUNCEMENT_PREVIEW_CHARS) {
-        wrapper.innerHTML = `
-            <p class="admonition-title">${title}</p>
-            <div class="announcement-preview">${safeContent}</div>
-        `;
-        return wrapper;
+    const details = document.createElement('details');
+    details.className = `admonition ${type} announcement`;
+    // Short announcements start expanded — long ones start collapsed
+    if (textLength(safeContent) <= ANNOUNCEMENT_AUTO_OPEN_CHARS) {
+        details.setAttribute('open', '');
     }
 
-    // Otherwise split it into a visible preview + a collapsible remainder.
-    const { preview, remainder } = splitForPreview(safeContent, ANNOUNCEMENT_PREVIEW_CHARS);
-    wrapper.innerHTML = `
-        <p class="admonition-title">${title}</p>
-        <div class="announcement-preview">${preview}</div>
-        <details class="announcement-full">
-            <summary aria-label="Toggle full announcement"></summary>
-            <div class="announcement-full-body">${remainder}</div>
-        </details>
+    details.innerHTML = `
+        <summary class="admonition-title announcement-summary">
+            <span class="announcement-summary-text">${title}</span>
+            <span class="announcement-summary-chevron" aria-hidden="true"></span>
+        </summary>
+        <div class="announcement-body">${safeContent}</div>
     `;
-    return wrapper;
+    return details;
 }
 
-function renderAnnouncements(list, container) {
+function renderAnnouncementsSection(list, container) {
     container.innerHTML = '';
-    if (!Array.isArray(list) || list.length === 0) return;
-    list.forEach(item => container.appendChild(renderAnnouncement(item)));
+    container.classList.remove('is-empty');
+    if (!Array.isArray(list) || list.length === 0) {
+        container.classList.add('is-empty');
+        return;
+    }
+
+    // Section header — count + collapse/expand all
+    const header = document.createElement('div');
+    header.className = 'announcements-header';
+    header.innerHTML = `
+        <span class="announcements-count">
+            ${list.length} active announcement${list.length === 1 ? '' : 's'}
+        </span>
+        <button type="button" class="announcements-toggle-all" data-mode="collapse">
+            Collapse all
+        </button>
+    `;
+    container.appendChild(header);
+
+    // List
+    const listEl = document.createElement('div');
+    listEl.className = 'announcements-list';
+    list.forEach(item => listEl.appendChild(renderAnnouncement(item)));
+    container.appendChild(listEl);
+
+    // Wire up the section-level toggle
+    const toggle = header.querySelector('.announcements-toggle-all');
+    const setMode = (mode) => {
+        toggle.dataset.mode = mode;
+        toggle.textContent = mode === 'collapse' ? 'Collapse all' : 'Expand all';
+    };
+    // Initial mode reflects reality: if any announcement is open, offer "Collapse all"
+    const anyOpen = () => listEl.querySelectorAll('details.announcement[open]').length > 0;
+    setMode(anyOpen() ? 'collapse' : 'expand');
+    toggle.addEventListener('click', () => {
+        const mode = toggle.dataset.mode;
+        const detailsEls = listEl.querySelectorAll('details.announcement');
+        if (mode === 'collapse') {
+            detailsEls.forEach(d => d.removeAttribute('open'));
+            setMode('expand');
+        } else {
+            detailsEls.forEach(d => d.setAttribute('open', ''));
+            setMode('collapse');
+        }
+    });
+
+    // Also keep the toggle label in sync if the user opens/closes individual items
+    listEl.addEventListener('toggle', () => {
+        setMode(anyOpen() ? 'collapse' : 'expand');
+    }, true); // capture phase — <details>'s toggle event does not bubble
 }
 
 // ---- Server status ----------------------------------------------------
@@ -236,7 +235,7 @@ function getServerStatus() {
         .then(r => r.json())
         .then(data => {
             if (announcementDiv) {
-                renderAnnouncements(data.announcements, announcementDiv);
+                renderAnnouncementsSection(data.announcements, announcementDiv);
             }
             renderServerStatus(data, statusDiv);
         })
@@ -294,12 +293,6 @@ function loadDiscordActivity() {
 }
 
 // ---- Bootstrapping ----------------------------------------------------
-//
-// We support both the standard DOMContentLoaded event AND MkDocs
-// Material's `navigation.instant` mode. In instant mode, page swaps
-// happen without full reloads, so we hook into Material's subscribable
-// document$ observable when it's available. Otherwise we fall back to
-// DOMContentLoaded.
 
 function boot() {
     getServerStatus();

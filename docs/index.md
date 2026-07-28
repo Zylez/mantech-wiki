@@ -4,43 +4,12 @@ hide:
   - navigation
 ---
 
-# Very Cool Anarchy Server
+# Very Cool Cobblemon Server
 
-Welcome to the official website. This page always reflects the **currently running** server — its live status, recent activity, and the latest announcements. Everything else lives in the tabs above.
+Welcome. This page always reflects the **currently running** server — its live status, recent activity, and the latest announcements.
 
-<!-- Live announcements from the server API render here.
-     Long announcements collapse behind a "Read more" toggle. -->
-<div id="announcement" class="announcement-slot"></div>
-
-## Server at a Glance
-
-<div class="grid cards" markdown>
-
--   :fontawesome-solid-server: __Type__
-
-    ---
-
-    Vanilla → PaperMC with plugins, running **24/7**.
-
--   :fontawesome-solid-unlock: __Access__
-
-    ---
-
-    **Online-Mode: OFF** — cracked clients are supported.
-
--   :fontawesome-solid-earth-americas: __World__
-
-    ---
-
-    Unrestricted wilderness. Build, mine, and PvP everywhere.
-
--   :fontawesome-solid-scale-balanced: __Ruleset__
-
-    ---
-
-    Semi-anarchy. See the [Rules](rules/index.md) page for the full principles.
-
-</div>
+!!! tip "First time joining?"
+    Head to the [**Install** page](install/index.md) for step-by-step setup instructions for every popular launcher (CurseForge, ATLauncher, SKLauncher, TLauncher, and more).
 
 ## Live Server Status
 
@@ -64,9 +33,47 @@ Welcome to the official website. This page always reflects the **currently runni
     </div>
 </div>
 
+## Announcements
+
+<div id="announcement" class="announcements-section"></div>
+
+## Server at a Glance
+
+<div class="grid cards" markdown>
+
+-   :fontawesome-solid-server: __Type__
+
+    ---
+
+    Modded — **Fabric** loader, running the Cobblemon Official Modpack \[Fabric\] by CobbledStudios.
+
+-   :fontawesome-solid-unlock: __Access__
+
+    ---
+
+    **Online-Mode: OFF** — cracked clients are supported. Same account carries over from the previous server.
+
+-   :fontawesome-solid-dragon: __Gameplay__
+
+    ---
+
+    Explore, catch Pokémon, battle, trade — all layered on top of the same anarchy ruleset.
+
+-   :fontawesome-solid-scale-balanced: __Ruleset__
+
+    ---
+
+    Semi-anarchy, same principles as the previous server. See [Rules](rules/index.md).
+
+</div>
+
 ## Where to Next
 
 <div class="grid cards" markdown>
+
+-   :fontawesome-solid-download: [__Install__](install/index.md)
+
+    Step-by-step modpack setup for CurseForge, ATLauncher, SKLauncher, TLauncher, and more.
 
 -   :fontawesome-solid-book: [__Rules & Principles__](rules/index.md)
 
@@ -75,10 +82,6 @@ Welcome to the official website. This page always reflects the **currently runni
 -   :fontawesome-solid-bullhorn: [__News__](news/index.md)
 
     Server updates, downtime notices, and announcements — archived by date.
-
--   :fontawesome-solid-gift: [__Rewards__](rewards/index.md)
-
-    Vote on server-list websites and get items delivered in-game.
 
 -   :fontawesome-solid-life-ring: [__Support__](support/index.md)
 

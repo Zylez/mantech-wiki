@@ -1,0 +1,151 @@
+site_name: Very Cool Anarchy Server
+site_url: https://zylez.github.io/mantech-wiki/
+site_description: >-
+  The official website for the Very Cool Anarchy Server —
+  server status, live activity, news, rules, and support.
+
+# -------------------------------------------------------------------
+# Theme
+# -------------------------------------------------------------------
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+
+  palette:
+    # Dark mode (default)
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: black
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+  features:
+    # Navigation
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.footer
+    # Table of contents
+    - toc.follow
+    # Content
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+    # Search
+    - search.suggest
+    - search.highlight
+    - search.share
+
+  icon:
+    repo: fontawesome/brands/github
+
+# -------------------------------------------------------------------
+# Custom CSS / JS
+# -------------------------------------------------------------------
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - javascripts/script.js
+
+# -------------------------------------------------------------------
+# Plugins
+# -------------------------------------------------------------------
+plugins:
+  - search
+  - tags
+  - blog:
+      blog_dir: news
+      blog_toc: true
+      post_dir: "{blog}/posts"
+      post_date_format: long
+      post_url_format: "{date}/{slug}"
+      post_url_date_format: yyyy/MM/dd
+      post_excerpt: optional
+      archive: true
+      archive_name: Archive
+      archive_date_format: MMMM yyyy
+      categories: true
+      categories_name: Categories
+      pagination: true
+      pagination_per_page: 8
+
+# -------------------------------------------------------------------
+# Markdown extensions
+# -------------------------------------------------------------------
+markdown_extensions:
+  # Core
+  - abbr
+  - attr_list
+  - md_in_html
+  - admonition
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+
+  # PyMdown Extensions
+  - pymdownx.details            # Collapsible admonitions (???)
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets           # Shared content across pages
+  - pymdownx.keys               # Keyboard shortcut styling
+  - pymdownx.mark
+  - pymdownx.caret
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# -------------------------------------------------------------------
+# Navigation
+# -------------------------------------------------------------------
+nav:
+  - Home: index.md
+  - News: news/index.md
+  - Rules: rules/index.md
+  - Rewards: rewards/index.md
+  - Resource Packs: resource-packs/index.md
+  - FAQ: faq/index.md
+  - Support: support/index.md
+
+# -------------------------------------------------------------------
+# Extra
+# -------------------------------------------------------------------
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/zylez/mantech-wiki
+      name: Repository
+  generator: false

@@ -1,0 +1,437 @@
+/* =====================================================================
+   Very Cool Anarchy Server — custom stylesheet
+   All colors reference Material's CSS variables so both light and dark
+   modes work automatically.
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. Announcements section
+   The whole announcements section on the home page has a header row
+   with a count + a "Collapse all / Expand all" button, followed by a
+   list where each announcement is its own <details> (collapsible by
+   title). Short announcements render pre-expanded; long ones start
+   collapsed.
+   --------------------------------------------------------------------- */
+
+.announcements-section {
+    margin: 0.5rem 0 1.5rem;
+}
+
+.announcements-section.is-empty {
+    display: none;
+}
+
+.announcements-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.4rem 0.2rem 0.75rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.announcements-count {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--md-default-fg-color--light);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.announcements-toggle-all {
+    appearance: none;
+    background: transparent;
+    color: var(--md-accent-fg-color);
+    border: 1px solid var(--md-accent-fg-color);
+    border-radius: 999px;
+    padding: 0.3rem 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.announcements-toggle-all:hover,
+.announcements-toggle-all:focus-visible {
+    background: var(--md-accent-fg-color);
+    color: var(--md-primary-bg-color, #fff);
+    outline: none;
+}
+
+.announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* ---------------------------------------------------------------------
+   2. Individual announcement (a <details> styled like a Material
+   admonition)
+
+   NOTE: We deliberately DO NOT set `overflow: hidden` here. That was the
+   root cause of the earlier "Read more button appears cropped" bug — the
+   button/summary row was being clipped by the parent's overflow.
+   --------------------------------------------------------------------- */
+
+details.announcement {
+    margin: 0;
+    border-radius: 8px;
+    /* No overflow: hidden here! */
+}
+
+details.announcement > summary.announcement-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.55rem 1rem 0.55rem 2.4rem;   /* leave room for the admonition icon */
+    list-style: none;
+    user-select: none;
+    position: relative;
+}
+
+/* Hide the default marker in browsers that show it */
+details.announcement > summary.announcement-summary::-webkit-details-marker,
+details.announcement > summary.announcement-summary::marker {
+    display: none;
+    content: '';
+}
+
+.announcement-summary-text {
+    flex: 1 1 auto;
+    min-width: 0;
+    word-break: break-word;
+    font-weight: 700;
+}
+
+/* The chevron on the right of the summary row — rotates when open */
+.announcement-summary-chevron {
+    flex: 0 0 auto;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid currentColor;
+    opacity: 0.7;
+    transition: transform 0.15s ease;
+}
+
+details.announcement[open] > summary.announcement-summary .announcement-summary-chevron {
+    transform: rotate(180deg);
+}
+
+/* The body content shown when expanded */
+.announcement-body {
+    padding: 0 1rem 0.75rem 2.4rem;
+    line-height: 1.55;
+    animation: fade-in 0.2s ease;
+}
+
+.announcement-body > :first-child { margin-top: 0.25rem; }
+.announcement-body > :last-child  { margin-bottom: 0; }
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(-2px); }
+    to   { opacity: 1; transform: none; }
+}
+
+/* Nice keyboard-focus ring on the summary */
+details.announcement > summary.announcement-summary:focus-visible {
+    outline: 2px solid var(--md-accent-fg-color);
+    outline-offset: 2px;
+    border-radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+   3. Live server status block
+   --------------------------------------------------------------------- */
+
+.server-status {
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    margin: 1rem 0;
+}
+
+.status-loading,
+.status-offline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+}
+
+.status-online-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.75rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.status-online-grid li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.status-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--md-default-fg-color--light);
+    font-weight: 600;
+}
+
+.status-value {
+    font-size: 1rem;
+    font-weight: 500;
+    word-break: break-all;
+}
+
+.status-value code {
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: var(--md-code-bg-color);
+    color: var(--md-code-fg-color);
+    font-size: 0.9rem;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot--online   { background: #22c55e; box-shadow: 0 0 8px rgba(34,197,94,.6); }
+.status-dot--offline  { background: #ef4444; }
+.status-dot--loading  { background: var(--md-default-fg-color--light);
+                        animation: pulse 1.2s ease-in-out infinite; }
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 1; }
+}
+
+/* ---------------------------------------------------------------------
+   4. Recent Server Activity panel
+   --------------------------------------------------------------------- */
+
+.activity-panel {
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 10px;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    background: var(--md-default-bg-color);
+}
+
+.activity-header {
+    background: linear-gradient(
+        135deg,
+        var(--md-primary-fg-color) 0%,
+        var(--md-primary-fg-color--dark, var(--md-primary-fg-color)) 100%
+    );
+    color: var(--md-primary-bg-color, #fff);
+    padding: 0.8rem 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.activity-title-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.activity-title {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.activity-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.75;
+}
+
+.activity-count {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.activity-messages {
+    max-height: 340px;
+    overflow-y: auto;
+    padding: 0.3rem 0;
+}
+
+.activity-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: var(--md-default-fg-color--light);
+    margin: 0;
+}
+
+.activity-message {
+    display: grid;
+    grid-template-columns: 2rem 1fr auto;
+    align-items: start;
+    gap: 0.4rem 0.75rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    transition: background-color 0.15s ease;
+}
+
+.activity-message:hover {
+    background: var(--md-default-fg-color--lightest);
+}
+
+.activity-message:last-child { border-bottom: none; }
+
+.activity-icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    background: var(--md-default-fg-color--lightest);
+    color: var(--md-default-fg-color);
+    flex-shrink: 0;
+}
+
+.activity-icon--join   { background: rgba(34,197,94,.15);  color: #22c55e; }
+.activity-icon--leave  { background: rgba(148,163,184,.2); color: #94a3b8; }
+.activity-icon--death  { background: rgba(239,68,68,.15);  color: #ef4444; }
+.activity-icon--chat   { background: rgba(59,130,246,.15); color: #3b82f6; }
+.activity-icon--system { background: rgba(234,179,8,.15);  color: #eab308; }
+
+.activity-content {
+    grid-column: 2;
+    grid-row: 1;
+    word-break: break-word;
+}
+
+.activity-timestamp {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 0.75rem;
+    color: var(--md-default-fg-color--light);
+    white-space: nowrap;
+    padding-top: 0.1rem;
+}
+
+.activity-messages::-webkit-scrollbar { width: 8px; }
+.activity-messages::-webkit-scrollbar-track { background: transparent; }
+.activity-messages::-webkit-scrollbar-thumb {
+    background: var(--md-default-fg-color--lightest);
+    border-radius: 4px;
+}
+.activity-messages::-webkit-scrollbar-thumb:hover {
+    background: var(--md-default-fg-color--light);
+}
+
+/* ---------------------------------------------------------------------
+   5. Spoiler component (used on Support page)
+   --------------------------------------------------------------------- */
+
+.spoiler {
+    margin: 1rem 0;
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: var(--md-default-bg-color);
+}
+
+.spoiler > summary {
+    background: var(--md-default-fg-color--lightest);
+    color: var(--md-default-fg-color);
+    border: 1px solid var(--md-default-fg-color--lighter);
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.15s ease;
+}
+
+.spoiler > summary::-webkit-details-marker { display: none; }
+
+.spoiler > summary:hover { background: var(--md-default-fg-color--lighter); }
+
+.spoiler > summary::before {
+    content: "🔒";
+    font-size: 0.9rem;
+}
+.spoiler[open] > summary::before { content: "🔓"; }
+
+.spoiler-content {
+    margin: 0.75rem 0.25rem 0.25rem;
+    padding: 1rem;
+    background: var(--md-code-bg-color);
+    border-radius: 6px;
+    border-left: 4px solid var(--md-accent-fg-color);
+}
+
+/* ---------------------------------------------------------------------
+   6. Minor tweaks
+   --------------------------------------------------------------------- */
+
+.md-typeset .grid.cards > :is(ul, ol) > li,
+.md-typeset .grid > .card {
+    border-radius: 10px;
+}
+
+/* =====================================================================
+   7. Cobblemon-branch overrides — Pokémon-themed accents
+   ===================================================================== */
+
+.activity-header {
+    background:
+        linear-gradient(
+            to bottom,
+            var(--md-primary-fg-color) 0%,
+            var(--md-primary-fg-color) 48%,
+            rgba(255, 255, 255, 0.9) 48%,
+            rgba(255, 255, 255, 0.9) 52%,
+            #222 52%,
+            #222 100%
+        );
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.activity-count {
+    background: var(--md-accent-fg-color, #facc15);
+    color: #1a1a1a;
+    text-shadow: none;
+    font-weight: 700;
+}
+
+.md-typeset .grid.cards > :is(ul, ol) > li:hover,
+.md-typeset .grid > .card:hover {
+    border-color: var(--md-accent-fg-color);
+    transform: translateY(-2px);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}

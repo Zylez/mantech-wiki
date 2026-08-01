@@ -45,7 +45,7 @@ Welcome. This page always reflects the **currently running** server — its live
 
     ---
 
-    Modded — **Fabric** loader, running the Cobblemon Official Modpack \[Fabric\] by CobbledStudios.
+    Modded — **Fabric** loader, running our custom Cobblemon modpack. See [Install](install/index.md) for setup.
 
 -   :fontawesome-solid-unlock: __Access__
 

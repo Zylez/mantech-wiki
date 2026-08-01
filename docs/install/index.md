@@ -8,28 +8,45 @@ description: How to install the Very Cool Cobblemon custom modpack for every pop
 The server runs on a **custom modpack** we've put together specifically for Very Cool Cobblemon. It's not on CurseForge or Modrinth — you download it directly as a zip and import it into your launcher.
 
 - **Modloader:** Fabric
-- **Minecraft version:** Check the [live status box on the home page](../index.md#live-server-status) — it always shows what the server is currently running.
+- **Minecraft version:** **1.21.1** — matching Cobblemon's supported version. We plan to stay here for a while.
 - **Distribution:** direct download (see below).
 
 ---
 
 ## Step 1 — Download the Modpack Zip
 
+Two versions are available. Pick whichever fits your launcher and situation.
+
 <div class="grid cards" markdown>
 
--   :fontawesome-solid-download: __Download the pack__
+-   :fontawesome-solid-box: __Standard__ (recommended)
 
     ---
 
-    [:octicons-download-16: **Download from pCloud**](https://e.pcloud.link/publink/show?code=XZtSyy7ZLaaJV2GQvrV5KV2DV3fK6z3wDqmX){ .md-button .md-button--primary }
+    Smaller download. The zip contains a `modlist.html`; your launcher fetches each mod from CurseForge during import.
 
-    File: `Very Cool Cobblemon Modpack 1.0 1.21.1.zip`  
-    Hosted on pCloud, no account required.
+    - Smaller file (a few MB)
+    - Mod files pulled fresh from CurseForge — signed, verified
+    - Best for **CurseForge Launcher, ATLauncher, Prism, GDLauncher**
+
+    [:octicons-download-16: **Download Standard**](https://e.pcloud.link/publink/show?code=XZmp7y7ZgGho1os8pIJW1qQ2cC4HCS6yQH3X){ .md-button .md-button--primary }
+
+-   :fontawesome-solid-box-open: __Preloaded__
+
+    ---
+
+    Larger download. All mod files bundled directly in the zip — nothing to fetch at install time.
+
+    - Larger file (a few hundred MB)
+    - No CurseForge integration required
+    - Best for **cracked launchers** (SKLauncher, TLauncher) or any launcher that stalls during CurseForge fetches
+
+    [:octicons-download-16: **Download Preloaded**](https://e.pcloud.link/publink/show?code=XZYp7y7Zx26xSgSmaTYDKXIe87wUzkHJlG87){ .md-button }
 
 </div>
 
-!!! tip "Verify the download"
-    The zip should be a few hundred MB. If it's tiny (<1 MB), pCloud served the folder-listing page instead of the file — click through to the actual file first, then download.
+!!! tip "Verifying the download"
+    The Standard zip should be a few MB. The Preloaded zip should be several hundred MB. If either is much smaller than expected (< 100 KB), pCloud probably served the folder-listing page instead of the file — click through to the actual file and try again.
 
 Save the zip somewhere easy to find (Downloads folder is fine). You'll point your launcher at it in Step 2.
 
@@ -41,11 +58,13 @@ Pick the tab for your launcher. Every path leads to the same end result — a Fa
 
 === "CurseForge Launcher"
 
+    Works best with the **Standard** download.
+
     1. Open the CurseForge app.
     2. Go to **Minecraft** in the sidebar.
     3. Click **Create Custom Profile → Import**.
-    4. Select the `VeryCoolCobblemon.zip` you downloaded.
-    5. Wait for it to unpack and finish setup.
+    4. Select the zip you downloaded.
+    5. Wait for it to unpack and finish setup (this is when the launcher fetches the mods).
     6. Click **Play** on the new profile.
     7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
 
@@ -54,10 +73,12 @@ Pick the tab for your launcher. Every path leads to the same end result — a Fa
 
 === "ATLauncher"
 
+    Works with either download version. Try **Standard** first; if the CurseForge integration stalls, use **Preloaded**.
+
     1. Open ATLauncher.
     2. Go to the **Packs** tab → **Add Pack** (or the **+** icon).
     3. Choose **Import from Zip** (or drag the zip onto the ATLauncher window).
-    4. Point it at `VeryCoolCobblemon.zip`.
+    4. Point it at the downloaded zip.
     5. Wait for the install to complete.
     6. Click **Play** on the new instance.
     7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
@@ -67,10 +88,12 @@ Pick the tab for your launcher. Every path leads to the same end result — a Fa
 
 === "Prism Launcher / MultiMC"
 
+    Works best with the **Standard** download.
+
     1. Open Prism (or MultiMC).
     2. Click **Add Instance**.
     3. Pick **Import from zip** on the left.
-    4. Browse to `VeryCoolCobblemon.zip` and open it.
+    4. Browse to the downloaded zip and open it.
     5. Give the instance a name and hit **OK**.
     6. Wait for the import to finish. Prism will fetch the Fabric loader and any dependencies automatically.
     7. Click **Launch**.
@@ -78,27 +101,31 @@ Pick the tab for your launcher. Every path leads to the same end result — a Fa
 
 === "GDLauncher"
 
+    Works best with the **Standard** download.
+
     1. Open GDLauncher.
     2. Click the **+** button (Add Instance).
     3. Choose **Import from zip**.
-    4. Select `VeryCoolCobblemon.zip`.
+    4. Select the downloaded zip.
     5. Wait for the install.
     6. Click **Play**.
     7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
 
 === "SKLauncher / TLauncher (manual)"
 
+    Use the **Preloaded** download — it already contains the mod files, so no CurseForge integration is needed.
+
     Neither SKLauncher nor TLauncher can import modpack zips directly. You'll install Fabric first, then extract the pack contents into your profile.
 
     **A. Install Fabric through the launcher**
 
-    1. In the launcher's version dropdown, pick **Fabric** for the Minecraft version the server is running (e.g. `fabric-loader-1.21.1`).
+    1. In the launcher's version dropdown, pick **Fabric** for **Minecraft 1.21.1** (`fabric-loader-1.21.1`).
     2. If Fabric isn't listed, install it via the launcher's built-in Fabric installer (SKLauncher: **Settings/Tools**; TLauncher: enable the **Fabric** filter in versions).
     3. Launch that profile once so the `.minecraft` folder is created.
 
     **B. Extract the pack into your profile**
 
-    1. Extract `VeryCoolCobblemon.zip` to a temporary folder. You should see subfolders like `mods/`, `config/`, `resourcepacks/`, and possibly `shaderpacks/`.
+    1. Extract the Preloaded zip to a temporary folder. You should see subfolders like `mods/`, `config/`, `resourcepacks/`, and possibly `shaderpacks/`.
     2. Open your Minecraft profile folder:
 
         ```text
@@ -133,19 +160,9 @@ If any of these are missing, jump to [Troubleshooting](#troubleshooting).
 
 ## Included Mods
 
-The pack ships with the following mods. Version bumps happen as we tune the server — check back after any [News](../news/index.md) post that mentions a mod update.
+Populated live from the modpack's exported `modlist.html`. Click any mod to open its CurseForge page.
 
-<!--
-  MAINTENANCE NOTE:
-  Add or update rows below as the pack changes. Format:
-  | Mod Name | 1.2.3 | [Modrinth](https://modrinth.com/mod/slug) |
-  | Mod Name | 1.2.3 | [CurseForge](https://www.curseforge.com/minecraft/mc-mods/slug) |
-  Sort however you like — alphabetical is easiest for players to scan.
--->
-
-| Mod | Version | Source |
-| --- | --- | --- |
-| *— replace with real entries —* | *0.0.0* | *[Modrinth](https://modrinth.com/) or [CurseForge](https://www.curseforge.com/)* |
+<div class="mod-list" data-source="../assets/modlist.html"></div>
 
 ## Included Resource Packs
 
@@ -153,35 +170,43 @@ The pack also ships with these resource packs, which load automatically the firs
 
 <!--
   MAINTENANCE NOTE:
-  Same format as the Mods table above.
+  Add rows below as new resource packs are bundled with the pack.
+  Format:
+    | Pack Name | [Source](https://link.to/pack) |
 -->
 
-| Resource Pack | Version | Source |
-| --- | --- | --- |
-| *— replace with real entries —* | *0.0.0* | *[Modrinth](https://modrinth.com/) or [CurseForge](https://www.curseforge.com/)* |
+| Resource Pack | Source |
+| --- | --- |
+| *— replace with real entries —* | *[Modrinth](https://modrinth.com/) or [CurseForge](https://www.curseforge.com/)* |
 
 ---
 
 ## Troubleshooting
 
 ??? question "\"Outdated server\" or \"Outdated client\" in the multiplayer list"
-    Your Fabric profile is running a different Minecraft version than the server. Check the version in the [home page status box](../index.md#live-server-status) and reinstall the pack for that exact version.
+    Your Fabric profile is running a different Minecraft version than the server. The server runs **1.21.1** — reinstall Fabric for exactly that version.
 
 ??? question "Game crashes on launch"
     Usually one of:
-    
+
     - Your mods folder mixes our pack with mods from another profile — use a separate instance.
     - You extracted the pack into the wrong `.minecraft` folder (some launchers use a custom directory — check the launcher's **Settings**).
-    - Your Fabric loader version doesn't match. Reinstall Fabric for the exact Minecraft version the server runs.
+    - Your Fabric loader version doesn't match. Reinstall Fabric for exactly **1.21.1**.
 
 ??? question "\"Server modded, this client is vanilla\""
     Fabric loaded but the mods didn't. Double-check that the `mods/` folder ended up in the profile folder your launcher actually uses.
 
+??? question "Launcher hangs during the CurseForge download step"
+    Common with SKLauncher / TLauncher and occasionally CurseForge itself under heavy API load. Grab the **Preloaded** version instead — it skips the CurseForge fetch entirely.
+
 ??? question "Only a small file downloaded from pCloud"
-    You landed on the folder page, not the file itself. Click through to the actual `VeryCoolCobblemon.zip` first, then hit Download.
+    You landed on the folder page, not the file itself. Click through to the actual zip first, then hit Download.
 
 ??? question "Resource packs don't appear enabled"
     Open **Options → Resource Packs** and enable them manually. If they're not in the list at all, the `resourcepacks/` folder from the zip didn't get copied into your profile — repeat Step 2 for your launcher.
+
+??? question "The mod list on this page is empty or shows an error"
+    The site's `assets/modlist.html` file is missing or unreachable. If you're a player, refresh the page after a few minutes. If you're the admin, ensure `docs/assets/modlist.html` was committed and deployed.
 
 ## Still stuck?
 

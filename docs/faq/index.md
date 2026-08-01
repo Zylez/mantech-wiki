@@ -29,7 +29,7 @@ A **custom modpack** we put together for the server, distributed as a direct zip
 
 ### Which Minecraft version?
 
-Whichever version is shown in the [live status box on the home page](../index.md#live-server-status). Match it exactly — Fabric loaders for adjacent versions won't connect.
+**Minecraft 1.21.1**, matching Cobblemon's supported version. We plan to stay here for a while — Cobblemon's release cadence means the pack is stable on 1.21.1 for the foreseeable future. Match it exactly when installing Fabric; adjacent Minecraft versions won't connect.
 
 ### Do I have to use the pack we provide?
 

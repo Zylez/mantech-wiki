@@ -1,10 +1,10 @@
 /* =====================================================================
-   Very Cool Anarchy Server — front-end script
-   - Fetches live server status and renders it
-   - Fetches announcements: each is a title-collapsible; the whole
-     section also has a "Collapse all / Expand all" toggle
-   - Fetches recent server activity and renders it with icons + relative
-     timestamps
+   Very Cool Cobblemon Server — front-end script
+   - Live server status
+   - Live activity feed with icons + relative timestamps
+   - Announcements: title-collapsible + section-level Collapse/Expand all
+   - Mod list: parses docs/assets/modlist.html into an
+     alphabetized, filterable grid of CurseForge/Modrinth links
    ===================================================================== */
 
 // ---- Config -----------------------------------------------------------
@@ -13,8 +13,6 @@ const API_BASE = 'https://man.servegame.com/api';
 const STATUS_ENDPOINT   = `${API_BASE}/minecraft-status`;
 const ACTIVITY_ENDPOINT = `${API_BASE}/discord-activity`;
 
-// Announcements shorter than this render pre-expanded so quick notices
-// don't force an extra click; long ones start collapsed.
 const ANNOUNCEMENT_AUTO_OPEN_CHARS = 220;
 
 // ---- Utilities --------------------------------------------------------
@@ -25,11 +23,6 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-/**
- * Sanitize announcement HTML so we can safely render server-provided
- * content. Allows a small whitelist of tags (formatting + links + line
- * breaks) and strips everything else.
- */
 function sanitizeAnnouncementHtml(html) {
     const allowedTags = new Set([
         'B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'UL', 'OL', 'LI',
@@ -104,14 +97,6 @@ function classifyActivity(content) {
 }
 
 // ---- Announcements ----------------------------------------------------
-//
-// Each announcement renders as a <details> element styled like a Material
-// admonition. The <summary> row is always visible and shows the title +
-// a subtle open/close chevron. Clicking it toggles the body.
-//
-// The whole announcements section also gets a header with a
-// "Collapse all / Expand all" button so returning visitors can hide the
-// whole block in a single click.
 
 function renderAnnouncement(item) {
     const type   = item.type || 'note';
@@ -120,7 +105,6 @@ function renderAnnouncement(item) {
 
     const details = document.createElement('details');
     details.className = `admonition ${type} announcement`;
-    // Short announcements start expanded — long ones start collapsed
     if (textLength(safeContent) <= ANNOUNCEMENT_AUTO_OPEN_CHARS) {
         details.setAttribute('open', '');
     }
@@ -143,7 +127,6 @@ function renderAnnouncementsSection(list, container) {
         return;
     }
 
-    // Section header — count + collapse/expand all
     const header = document.createElement('div');
     header.className = 'announcements-header';
     header.innerHTML = `
@@ -156,19 +139,16 @@ function renderAnnouncementsSection(list, container) {
     `;
     container.appendChild(header);
 
-    // List
     const listEl = document.createElement('div');
     listEl.className = 'announcements-list';
     list.forEach(item => listEl.appendChild(renderAnnouncement(item)));
     container.appendChild(listEl);
 
-    // Wire up the section-level toggle
     const toggle = header.querySelector('.announcements-toggle-all');
     const setMode = (mode) => {
         toggle.dataset.mode = mode;
         toggle.textContent = mode === 'collapse' ? 'Collapse all' : 'Expand all';
     };
-    // Initial mode reflects reality: if any announcement is open, offer "Collapse all"
     const anyOpen = () => listEl.querySelectorAll('details.announcement[open]').length > 0;
     setMode(anyOpen() ? 'collapse' : 'expand');
     toggle.addEventListener('click', () => {
@@ -183,10 +163,9 @@ function renderAnnouncementsSection(list, container) {
         }
     });
 
-    // Also keep the toggle label in sync if the user opens/closes individual items
     listEl.addEventListener('toggle', () => {
         setMode(anyOpen() ? 'collapse' : 'expand');
-    }, true); // capture phase — <details>'s toggle event does not bubble
+    }, true);
 }
 
 // ---- Server status ----------------------------------------------------
@@ -292,11 +271,129 @@ function loadDiscordActivity() {
         });
 }
 
+// ---- Mod list ---------------------------------------------------------
+//
+// Populates any element with class="mod-list" and a data-source attribute
+// pointing at an HTML file that follows the CurseForge modlist.html
+// export format:
+//
+//   <ul><li><a href="...">Mod Name</a></li>...</ul>
+//
+// Multiple <a> per <li> or nested lists are handled: we grab every <a>
+// under any <li>. Blank names or non-http hrefs are filtered out.
+
+function parseModList(html) {
+    const parser = new DOMParser();
+    // The exported file is a fragment (no <html>/<body>); parseFromString
+    // wraps it automatically so querySelectorAll still works.
+    const doc = parser.parseFromString(String(html ?? ''), 'text/html');
+    const links = [...doc.querySelectorAll('li a[href]')];
+    const seen = new Set();
+    const mods = [];
+    for (const a of links) {
+        const name = (a.textContent || '').trim();
+        const url  = a.getAttribute('href').trim();
+        if (!name || !url) continue;
+        if (!/^https?:\/\//i.test(url)) continue;
+        // Dedupe by URL (same mod listed twice = ignore repeat)
+        if (seen.has(url)) continue;
+        seen.add(url);
+        mods.push({ name, url });
+    }
+    // Alphabetical, case-insensitive, locale-aware (handles accents nicely)
+    mods.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+    return mods;
+}
+
+function renderModListGrid(container, mods) {
+    if (mods.length === 0) {
+        container.innerHTML = `
+            <p class="mod-list-empty">
+                No mods listed yet. Once <code>modlist.html</code> is populated,
+                mods will appear here automatically.
+            </p>`;
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="mod-list-toolbar">
+            <input type="search"
+                   class="mod-list-filter"
+                   placeholder="Filter mods…"
+                   aria-label="Filter mods by name">
+            <span class="mod-list-count" aria-live="polite">${mods.length} mods</span>
+        </div>
+        <div class="mod-list-grid" role="list">
+            ${mods.map(m => `
+                <a class="mod-link"
+                   role="listitem"
+                   href="${escapeHtml(m.url)}"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   data-search="${escapeHtml(m.name.toLowerCase())}">
+                    <span class="mod-link-name">${escapeHtml(m.name)}</span>
+                    <span class="mod-link-arrow" aria-hidden="true">↗</span>
+                </a>
+            `).join('')}
+        </div>
+    `;
+
+    // Wire up the filter
+    const input = container.querySelector('.mod-list-filter');
+    const count = container.querySelector('.mod-list-count');
+    const items = [...container.querySelectorAll('.mod-link')];
+    const total = mods.length;
+
+    input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        if (!q) {
+            items.forEach(el => el.hidden = false);
+            count.textContent = `${total} mods`;
+            return;
+        }
+        let visible = 0;
+        for (const el of items) {
+            const match = el.dataset.search.includes(q);
+            el.hidden = !match;
+            if (match) visible++;
+        }
+        count.textContent = `${visible} of ${total}`;
+    });
+}
+
+function loadModList(container) {
+    const sourceUrl = container.dataset.source;
+    if (!sourceUrl) return;
+    container.innerHTML = '<p class="mod-list-loading">Loading mod list…</p>';
+    fetch(sourceUrl)
+        .then(r => {
+            if (!r.ok) throw new Error(`Fetch failed: ${r.status}`);
+            return r.text();
+        })
+        .then(html => {
+            const mods = parseModList(html);
+            renderModListGrid(container, mods);
+        })
+        .catch(err => {
+            container.innerHTML = `
+                <p class="mod-list-error">
+                    Mod list unavailable. If you're the site admin,
+                    check that <code>${escapeHtml(sourceUrl)}</code> exists and is reachable.
+                </p>`;
+            console.error('Mod list error:', err);
+        });
+}
+
+function initModLists() {
+    document.querySelectorAll('.mod-list[data-source]').forEach(loadModList);
+}
+
 // ---- Bootstrapping ----------------------------------------------------
 
 function boot() {
     getServerStatus();
     loadDiscordActivity();
+    initModLists();
 }
 
 if (typeof document$ !== 'undefined' && document$.subscribe) {

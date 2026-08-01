@@ -21,9 +21,9 @@ The server runs on a **custom modpack** we've put together specifically for Very
 
     ---
 
-    [:octicons-download-16: **Download from pCloud**](https://e.pcloud.link/publink/show?code=REPLACE_WITH_YOUR_CODE){ .md-button .md-button--primary }
+    [:octicons-download-16: **Download from pCloud**](https://e.pcloud.link/publink/show?code=XZtSyy7ZLaaJV2GQvrV5KV2DV3fK6z3wDqmX){ .md-button .md-button--primary }
 
-    File: `VeryCoolCobblemon.zip`  
+    File: `Very Cool Cobblemon Modpack 1.0 1.21.1.zip`  
     Hosted on pCloud, no account required.
 
 </div>

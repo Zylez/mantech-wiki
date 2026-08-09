@@ -25,19 +25,25 @@ Not at the moment. We prefer to keep the server manageable and within a resource
 
 ### Which modpack does the server run?
 
-A **custom modpack** we put together for the server, distributed as a direct zip download (currently hosted on pCloud). It's not on CurseForge or Modrinth. See the [Install](../install/index.md) page for setup steps and the full mod/resource-pack list.
+The server uses **AutoModpack**, which means the client doesn't need a fixed static modpack — whichever mods and resource packs the server is currently running are pulled down automatically when you connect. You have three install paths (all covered on the [Install](../install/index.md) page):
+
+- A pre-built AutoModpack base (fastest).
+- Adding AutoModpack to your own Fabric instance.
+- A standard CurseForge-format modpack that installs everything at once (no live sync — for players who prefer a static setup).
+
+Or you can install every file manually. The list of required mods is auto-generated on the Install page from the pack's `modlist.html`.
 
 ### Which Minecraft version?
 
 **Minecraft 1.21.1**, matching Cobblemon's supported version. We plan to stay here for a while — Cobblemon's release cadence means the pack is stable on 1.21.1 for the foreseeable future. Match it exactly when installing Fabric; adjacent Minecraft versions won't connect.
 
-### Do I have to use the pack we provide?
+### Do I have to use the exact pack we provide?
 
-Yes for compatibility — the server checks the client's mod list to ensure Fabric API and Cobblemon (and the rest) match. Adding *client-side-only* mods (shaders, minimap, etc.) is fine as long as they don't affect server sync.
+For the *server-required* mods, yes — the server checks that Fabric API, Cobblemon, and the rest of the sync list match. Adding *client-side-only* mods (shaders, minimap, cosmetics) is fine as long as they don't affect server sync. If you're using AutoModpack, your own additions live in your regular `.minecraft/mods/` folder and don't conflict with what AutoModpack downloads.
 
 ### Where's the full mod list?
 
-On the [Install](../install/index.md#included-mods) page, along with the included resource packs and links to each mod's Modrinth or CurseForge page.
+On the [Install](../install/index.md#required-mods) page — it's auto-generated from the pack's latest `modlist.html` export, so it stays in sync with what the server actually requires.
 
 ### Are Pokémon "safe" from PvP?
 
@@ -51,7 +57,7 @@ Not yet — the modded server is still being tuned. Expect occasional restarts. 
 
 ### What launchers are supported?
 
-Any launcher that can install Fabric and load the Cobblemon modpack. The [Install](../install/index.md) page has step-by-step guides for CurseForge, ATLauncher, SKLauncher, TLauncher, Prism, and GDLauncher. Offline / cracked accounts are supported.
+Any launcher that can install Fabric. The [Install](../install/index.md) page has four setup paths — the AutoModpack routes work with any launcher (including SKLauncher and TLauncher), and the standard-modpack route works with any CurseForge-aware launcher (CurseForge, ATLauncher, Prism, GDLauncher, MultiMC). Offline / cracked accounts are supported.
 
 ### The launcher says "outdated client" or "outdated server"
 

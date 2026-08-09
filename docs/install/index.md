@@ -1,212 +1,164 @@
 ---
 title: Install
-description: How to install the Very Cool Cobblemon custom modpack for every popular Minecraft launcher.
+description: How to install the Cobblemon server's modpack — with AutoModpack, as a static pack, or fully manually.
 ---
 
 # Installing the Modpack
 
-The server runs on a **custom modpack** we've put together specifically for Very Cool Cobblemon. It's not on CurseForge or Modrinth — you download it directly as a zip and import it into your launcher.
+Everything you need to get on the server. Pick whichever setup approach suits you — all four end with you on the server, and the server ships with **AutoModpack** so any of them stays in sync automatically once you connect.
 
-- **Modloader:** Fabric
-- **Minecraft version:** **1.21.1** — matching Cobblemon's supported version. We plan to stay here for a while.
-- **Distribution:** direct download (see below).
+!!! tip "Which method should I pick?"
 
----
+    - **New to modded Minecraft, or you just want to play?** → Method 1 (pre-built AutoModpack pack).
+    - **Already have a Fabric instance you like?** → Method 2 (add AutoModpack to it).
+    - **Prefer a static, self-contained install?** → Method 3 (standard modpack).
+    - **Want total control over every file?** → Method 4 (manual).
 
-## Step 1 — Download the Modpack Zip
+## How to Join
 
-Two versions are available. Pick whichever fits your launcher and situation.
+=== "1. Pre-built AutoModpack modpack (easiest)"
 
-<div class="grid cards" markdown>
+    This is a clean Fabric instance with **AutoModpack pre-installed** and the required client-side resource packs already in place. Once launched, connecting to the server pulls in everything else automatically. Nothing to configure.
 
--   :fontawesome-solid-box: __Standard__ (recommended)
+    **Download:**  
+    :fontawesome-solid-download: [Cobblemon Server – AutoModpack Base (.zip)](#){ .modpack-link title="https://e.pcloud.link/publink/show?code=XZNP8y7ZVvXDY3fR5qFauxOFgeuCnHiHtLiy" }
 
-    ---
+    **Steps (any CurseForge-aware launcher):**
 
-    Smaller download. The zip contains a `modlist.html`; your launcher fetches each mod from CurseForge during import.
+    1. In your launcher, choose **Import modpack** (or **Add instance → From .zip**).
+    2. Select the downloaded `.zip`.
+    3. Wait for the launcher to build the instance.
+    4. Launch the instance.
+    5. **Multiplayer → Add Server**, enter the server IP from the [home page](../index.md).
+    6. On first connect, AutoModpack asks you to verify the server's certificate fingerprint. Confirm it.
+    7. AutoModpack downloads the current modpack. When it's done, restart Minecraft. Done.
 
-    - Smaller file (a few MB)
-    - Mod files pulled fresh from CurseForge — signed, verified
-    - Best for **CurseForge Launcher, ATLauncher, Prism, GDLauncher**
+    **For SKLauncher / TLauncher (no CurseForge-format import):**  
+    Extract the `.zip` manually and copy the `mods/`, `config/`, and `resourcepacks/` folders into your Fabric profile's `.minecraft` folder. Then launch that Fabric profile. If you'd rather skip the pre-built pack entirely, the **Fully manual** tab has step-by-step instructions.
 
-    [:octicons-download-16: **Download Standard**](https://e.pcloud.link/publink/show?code=XZmp7y7ZgGho1os8pIJW1qQ2cC4HCS6yQH3X){ .md-button .md-button--primary }
+=== "2. Add AutoModpack to your own instance"
 
--   :fontawesome-solid-box-open: __Preloaded__
+    If you already have a working Fabric instance (any version, any launcher), you don't need any of our downloads. Just install AutoModpack and connect.
 
-    ---
+    **Steps:**
 
-    Larger download. All mod files bundled directly in the zip — nothing to fetch at install time.
+    1. Install **Fabric Loader** for the Minecraft version the server is running (check the [status box on the home page](../index.md#live-server-status)).
+    2. Install **Fabric API** for the same version. Grab it from [Modrinth](https://modrinth.com/mod/fabric-api) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-api) and place the `.jar` in your instance's `mods/` folder.
+    3. Download **AutoModpack** from [Modrinth](https://modrinth.com/mod/automodpack) or [CurseForge](https://www.curseforge.com/minecraft/mc-mods/automodpack). Match the Minecraft version.
+    4. Drop the AutoModpack `.jar` into the same `mods/` folder.
+    5. Launch the instance.
+    6. **Multiplayer → Add Server**, enter the server IP from the [home page](../index.md).
+    7. On first connect: verify the server's fingerprint → confirm the modpack install → wait for the download → restart Minecraft.
 
-    - Larger file (a few hundred MB)
-    - No CurseForge integration required
-    - Best for **cracked launchers** (SKLauncher, TLauncher) or any launcher that stalls during CurseForge fetches
+    !!! success "Your own mods stay untouched"
+        AutoModpack downloads the server's synced files into `~/.minecraft/automodpack/modpacks/…`, isolated from your instance's regular `mods/` folder. Any client-side-only mods you've added — minimaps, shader loaders, cosmetic mods — keep working alongside the synced modpack.
 
-    [:octicons-download-16: **Download Preloaded**](https://e.pcloud.link/publink/show?code=XZYp7y7Zx26xSgSmaTYDKXIe87wUzkHJlG87){ .md-button }
+    !!! tip "Even quicker: AutoModpack's own Fabric installer"
+        AutoModpack ships a modified [Fabric installer](https://modrinth.com/mod/automodpack) that installs Fabric loader and AutoModpack in one step. If you're setting up a fresh instance from scratch, that saves you steps 1–4 above.
 
+=== "3. Standard modpack (no AutoModpack)"
+
+    A regular CurseForge-format modpack containing a `modlist.html` — your launcher fetches every mod from Modrinth and CurseForge at import time and locks the versions in. Once installed, you connect like it's a vanilla server. No live sync; when the server updates its mods, you'll need to reimport a new version of this pack.
+
+    **Download:**  
+    :fontawesome-solid-download: [Cobblemon Server – Standard Modpack (.zip)](#){ .modpack-link title="https://e.pcloud.link/publink/show?code=XZAP8y7ZOt4X6zRaGvRzE2r749dp5kmax3Fk" }
+
+    **Steps (CurseForge, ATLauncher, Prism, GDLauncher, or MultiMC):**
+
+    1. In your launcher, choose **Import modpack** (or **Add instance → From .zip**).
+    2. Select the downloaded `.zip`.
+    3. The launcher reads the `modlist.html`/`manifest.json` and downloads every mod from its source. This usually takes a few minutes.
+    4. Launch the instance.
+    5. **Multiplayer → Add Server**, enter the server IP from the [home page](../index.md).
+
+    !!! warning "SKLauncher / TLauncher don't import CurseForge modpacks natively"
+        For those launchers, use one of the CurseForge-aware launchers above just for the import step, then point your usual launcher at the resulting instance folder. Or switch to the **Fully manual** tab above.
+
+=== "4. Fully manual"
+
+    Install every mod and resource pack by hand. Most control, most work. The lists further down this page are the source of truth — copy every mod's `.jar` into your instance's `mods/` folder and every resource pack's `.zip` into `resourcepacks/`.
+
+    **Steps:**
+
+    1. In your launcher, install **Fabric Loader** for the Minecraft version the server is running (check the [status box](../index.md#live-server-status)).
+    2. Install **Fabric API** — put its `.jar` into your instance's `mods/` folder.
+    3. From the [Required mods](#required-mods) section below, download each mod's `.jar` (match the correct Minecraft version). Drop them all into `mods/`.
+    4. From the [Required resource packs](#required-resource-packs) section below, download each `.zip` and drop them into `resourcepacks/`.
+    5. Launch the instance. In Minecraft's **Options → Resource Packs**, enable each pack.
+    6. **Multiplayer → Add Server**, enter the server IP from the [home page](../index.md).
+
+    Your Minecraft instance folder is usually at:
+
+    ```text
+    C:\Users\%USERNAME%\AppData\Roaming\.minecraft
+    ```
+
+    On some launchers (Prism, MultiMC) the profile has its own `minecraft/` folder inside the instance directory. Check your launcher's docs if you're unsure.
+
+## Required Mods
+
+The list below is generated from the modpack's most recent `modlist.html` export and updates whenever the admin re-exports the file. Each mod links to its official download page.
+
+<div id="mod-list"
+     class="modlist"
+     data-modlist-src="../assets/modlist.html"
+     aria-live="polite">
+    <p class="modlist-loading">Loading mod list…</p>
 </div>
 
-!!! tip "Verifying the download"
-    The Standard zip should be a few MB. The Preloaded zip should be several hundred MB. If either is much smaller than expected (< 100 KB), pCloud probably served the folder-listing page instead of the file — click through to the actual file and try again.
+!!! note "Version matching"
+    The mod list doesn't include per-mod version numbers because those move fast. Always pick the `.jar` for the same Minecraft version the server is currently running — check the [status box on the home page](../index.md#live-server-status).
 
-Save the zip somewhere easy to find (Downloads folder is fine). You'll point your launcher at it in Step 2.
+## Required Resource Packs
 
----
+Resource packs are needed to correctly display the custom content the server uses. Enable each in **Options → Resource Packs** after adding.
 
-## Step 2 — Import Into Your Launcher
+<!--
+    Maintain this table manually — resource packs don't come with a
+    modlist-style file, so this is the source of truth for both the
+    site and any player doing a manual install.
 
-Pick the tab for your launcher. Every path leads to the same end result — a Fabric profile with all our mods and configs loaded.
+    Format:
+      | Pack | Source | Download |
+-->
 
-=== "CurseForge Launcher"
+| Pack | Source | Download |
+|---|---|---|
+| _Add each required pack here_ | _e.g. Modrinth / CurseForge / direct_ | _link_ |
 
-    Works best with the **Standard** download.
-
-    1. Open the CurseForge app.
-    2. Go to **Minecraft** in the sidebar.
-    3. Click **Create Custom Profile → Import**.
-    4. Select the zip you downloaded.
-    5. Wait for it to unpack and finish setup (this is when the launcher fetches the mods).
-    6. Click **Play** on the new profile.
-    7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
-
-    !!! note "Offline / cracked accounts"
-        The CurseForge launcher only allows logging in with a paid Microsoft account. If you don't have one, use ATLauncher or Prism instead — both accept the same zip.
-
-=== "ATLauncher"
-
-    Works with either download version. Try **Standard** first; if the CurseForge integration stalls, use **Preloaded**.
-
-    1. Open ATLauncher.
-    2. Go to the **Packs** tab → **Add Pack** (or the **+** icon).
-    3. Choose **Import from Zip** (or drag the zip onto the ATLauncher window).
-    4. Point it at the downloaded zip.
-    5. Wait for the install to complete.
-    6. Click **Play** on the new instance.
-    7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
-
-    !!! tip "Offline mode works"
-        ATLauncher supports offline / cracked accounts — set one up under **Accounts** if you don't have a paid Microsoft account.
-
-=== "Prism Launcher / MultiMC"
-
-    Works best with the **Standard** download.
-
-    1. Open Prism (or MultiMC).
-    2. Click **Add Instance**.
-    3. Pick **Import from zip** on the left.
-    4. Browse to the downloaded zip and open it.
-    5. Give the instance a name and hit **OK**.
-    6. Wait for the import to finish. Prism will fetch the Fabric loader and any dependencies automatically.
-    7. Click **Launch**.
-    8. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
-
-=== "GDLauncher"
-
-    Works best with the **Standard** download.
-
-    1. Open GDLauncher.
-    2. Click the **+** button (Add Instance).
-    3. Choose **Import from zip**.
-    4. Select the downloaded zip.
-    5. Wait for the install.
-    6. Click **Play**.
-    7. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
-
-=== "SKLauncher / TLauncher (manual)"
-
-    Use the **Preloaded** download — it already contains the mod files, so no CurseForge integration is needed.
-
-    Neither SKLauncher nor TLauncher can import modpack zips directly. You'll install Fabric first, then extract the pack contents into your profile.
-
-    **A. Install Fabric through the launcher**
-
-    1. In the launcher's version dropdown, pick **Fabric** for **Minecraft 1.21.1** (`fabric-loader-1.21.1`).
-    2. If Fabric isn't listed, install it via the launcher's built-in Fabric installer (SKLauncher: **Settings/Tools**; TLauncher: enable the **Fabric** filter in versions).
-    3. Launch that profile once so the `.minecraft` folder is created.
-
-    **B. Extract the pack into your profile**
-
-    1. Extract the Preloaded zip to a temporary folder. You should see subfolders like `mods/`, `config/`, `resourcepacks/`, and possibly `shaderpacks/`.
-    2. Open your Minecraft profile folder:
-
-        ```text
-        C:\Users\%USERNAME%\AppData\Roaming\.minecraft
-        ```
-
-    3. **Copy** the following from the extracted pack into `.minecraft` (**merge**, don't replace whole folders if you have other Fabric setups):
-        - `mods/`
-        - `config/`
-        - `resourcepacks/`
-        - `shaderpacks/` (if present)
-    4. Launch the Fabric profile in SKLauncher / TLauncher.
-    5. In Minecraft: **Multiplayer → Add Server**, then enter the server IP from the [home page](../index.md).
-
-    !!! warning "Existing mods folder"
-        If you already have a `mods/` folder from another Fabric profile, back it up first — mixing mod sets usually crashes the game. The safe move is to use a *separate* launcher instance or a *separate* game directory for this pack.
-
----
-
-## Step 3 — Verifying It Worked
+## Verifying it Worked
 
 Once the game loads:
 
-- [x] The main menu shows a **Mods** button.
-- [x] Clicking **Mods** lists Cobblemon and Fabric API among many others.
-- [x] Adding the server IP shows it as compatible in the multiplayer server list.
-- [x] Optional: the resource packs bundled with the pack appear at the top of your resource-pack list already enabled.
+- [x] Bottom-left of the main menu shows `Fabric API` (and, if you used AutoModpack, an AutoModpack notice).
+- [x] The main menu has a **Mods** button showing the mod list.
+- [x] Server IP appears as compatible in your multiplayer list.
+- [x] If you connected via AutoModpack, the first connection prompts a fingerprint check and a modpack confirmation before downloading.
 
-If any of these are missing, jump to [Troubleshooting](#troubleshooting).
-
----
-
-## Included Mods
-
-Populated live from the modpack's exported `modlist.html`. Click any mod to open its CurseForge page.
-
-<div class="mod-list" data-source="../assets/modlist.html"></div>
-
-## Included Resource Packs
-
-The pack also ships with these resource packs, which load automatically the first time you launch the profile.
-
-<!--
-  MAINTENANCE NOTE:
-  Add rows below as new resource packs are bundled with the pack.
-  Format:
-    | Pack Name | [Source](https://link.to/pack) |
--->
-
-| Resource Pack | Source |
-| --- | --- |
-| *— replace with real entries —* | *[Modrinth](https://modrinth.com/) or [CurseForge](https://www.curseforge.com/)* |
-
----
+If any of these are missing, jump to [Troubleshooting](#troubleshooting) below.
 
 ## Troubleshooting
 
 ??? question "\"Outdated server\" or \"Outdated client\" in the multiplayer list"
-    Your Fabric profile is running a different Minecraft version than the server. The server runs **1.21.1** — reinstall Fabric for exactly that version.
+    Your Fabric profile is running a different Minecraft version than the server. Check the version in the [home page status box](../index.md#live-server-status) and reinstall Fabric for that exact version.
 
 ??? question "Game crashes on launch"
-    Usually one of:
-
-    - Your mods folder mixes our pack with mods from another profile — use a separate instance.
-    - You extracted the pack into the wrong `.minecraft` folder (some launchers use a custom directory — check the launcher's **Settings**).
-    - Your Fabric loader version doesn't match. Reinstall Fabric for exactly **1.21.1**.
+    Usually a mismatch between the pack version and the Minecraft version. Reinstall the pack (or reinstall Fabric + redownload mods) for the version the server is currently running.
 
 ??? question "\"Server modded, this client is vanilla\""
-    Fabric loaded but the mods didn't. Double-check that the `mods/` folder ended up in the profile folder your launcher actually uses.
+    Fabric loaded, but no mods did. Double-check that your `mods/` folder ended up in the actual profile folder your launcher uses. In SKLauncher/TLauncher, this is usually `.minecraft`; in Prism/MultiMC it's inside the instance's `minecraft/` subfolder.
 
-??? question "Launcher hangs during the CurseForge download step"
-    Common with SKLauncher / TLauncher and occasionally CurseForge itself under heavy API load. Grab the **Preloaded** version instead — it skips the CurseForge fetch entirely.
+??? question "AutoModpack asks about a certificate fingerprint — is that safe?"
+    Yes. AutoModpack encrypts its downloads and asks you to verify the server on first connect so nobody can substitute their own modpack. Just confirm and it'll remember for future connects.
 
-??? question "Only a small file downloaded from pCloud"
-    You landed on the folder page, not the file itself. Click through to the actual zip first, then hit Download.
+??? question "AutoModpack downloaded the pack but the game is still \"vanilla\""
+    You need to **restart Minecraft** after the download finishes. AutoModpack loads the downloaded modpack on next launch — not mid-session.
 
-??? question "Resource packs don't appear enabled"
-    Open **Options → Resource Packs** and enable them manually. If they're not in the list at all, the `resourcepacks/` folder from the zip didn't get copied into your profile — repeat Step 2 for your launcher.
+??? question "The modpack I imported has no mods after install"
+    Some CurseForge packs only ship a `manifest.json` for licensing reasons. Use a CurseForge-aware launcher (CurseForge, ATLauncher, Prism, GDLauncher) — those fetch the actual mod files automatically. SKLauncher and TLauncher can't do this on their own.
 
-??? question "The mod list on this page is empty or shows an error"
-    The site's `assets/modlist.html` file is missing or unreachable. If you're a player, refresh the page after a few minutes. If you're the admin, ensure `docs/assets/modlist.html` was committed and deployed.
+??? question "The mod list on this page didn't load"
+    That means `assets/modlist.html` couldn't be fetched. If you're the admin, re-export the modpack and drop the updated `modlist.html` into `docs/assets/`. Otherwise, use one of the AutoModpack methods above — they don't rely on this list.
 
 ## Still stuck?
 

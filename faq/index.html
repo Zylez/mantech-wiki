@@ -635,10 +635,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#do-i-have-to-use-the-pack-we-provide" class="md-nav__link">
+  <a href="#do-i-have-to-use-the-exact-pack-we-provide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Do I have to use the pack we provide?
+        Do I have to use the exact pack we provide?
       
     </span>
   </a>
@@ -890,10 +890,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#do-i-have-to-use-the-pack-we-provide" class="md-nav__link">
+  <a href="#do-i-have-to-use-the-exact-pack-we-provide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Do I have to use the pack we provide?
+        Do I have to use the exact pack we provide?
       
     </span>
   </a>
@@ -1021,20 +1021,26 @@
 <p>Not at the moment. We prefer to keep the server manageable and within a resource range we can personally oversee.</p>
 <h2 id="cobblemon-specific">Cobblemon-Specific<a class="headerlink" href="#cobblemon-specific" title="Permanent link">&para;</a></h2>
 <h3 id="which-modpack-does-the-server-run">Which modpack does the server run?<a class="headerlink" href="#which-modpack-does-the-server-run" title="Permanent link">&para;</a></h3>
-<p>A <strong>custom modpack</strong> we put together for the server, distributed as a direct zip download (currently hosted on pCloud). It's not on CurseForge or Modrinth. See the <a href="../install/">Install</a> page for setup steps and the full mod/resource-pack list.</p>
+<p>The server uses <strong>AutoModpack</strong>, which means the client doesn't need a fixed static modpack — whichever mods and resource packs the server is currently running are pulled down automatically when you connect. You have three install paths (all covered on the <a href="../install/">Install</a> page):</p>
+<ul>
+<li>A pre-built AutoModpack base (fastest).</li>
+<li>Adding AutoModpack to your own Fabric instance.</li>
+<li>A standard CurseForge-format modpack that installs everything at once (no live sync — for players who prefer a static setup).</li>
+</ul>
+<p>Or you can install every file manually. The list of required mods is auto-generated on the Install page from the pack's <code>modlist.html</code>.</p>
 <h3 id="which-minecraft-version">Which Minecraft version?<a class="headerlink" href="#which-minecraft-version" title="Permanent link">&para;</a></h3>
 <p><strong>Minecraft 1.21.1</strong>, matching Cobblemon's supported version. We plan to stay here for a while — Cobblemon's release cadence means the pack is stable on 1.21.1 for the foreseeable future. Match it exactly when installing Fabric; adjacent Minecraft versions won't connect.</p>
-<h3 id="do-i-have-to-use-the-pack-we-provide">Do I have to use the pack we provide?<a class="headerlink" href="#do-i-have-to-use-the-pack-we-provide" title="Permanent link">&para;</a></h3>
-<p>Yes for compatibility — the server checks the client's mod list to ensure Fabric API and Cobblemon (and the rest) match. Adding <em>client-side-only</em> mods (shaders, minimap, etc.) is fine as long as they don't affect server sync.</p>
+<h3 id="do-i-have-to-use-the-exact-pack-we-provide">Do I have to use the exact pack we provide?<a class="headerlink" href="#do-i-have-to-use-the-exact-pack-we-provide" title="Permanent link">&para;</a></h3>
+<p>For the <em>server-required</em> mods, yes — the server checks that Fabric API, Cobblemon, and the rest of the sync list match. Adding <em>client-side-only</em> mods (shaders, minimap, cosmetics) is fine as long as they don't affect server sync. If you're using AutoModpack, your own additions live in your regular <code>.minecraft/mods/</code> folder and don't conflict with what AutoModpack downloads.</p>
 <h3 id="wheres-the-full-mod-list">Where's the full mod list?<a class="headerlink" href="#wheres-the-full-mod-list" title="Permanent link">&para;</a></h3>
-<p>On the <a href="../install/#included-mods">Install</a> page, along with the included resource packs and links to each mod's Modrinth or CurseForge page.</p>
+<p>On the <a href="../install/#required-mods">Install</a> page — it's auto-generated from the pack's latest <code>modlist.html</code> export, so it stays in sync with what the server actually requires.</p>
 <h3 id="are-pokemon-safe-from-pvp">Are Pokémon "safe" from PvP?<a class="headerlink" href="#are-pokemon-safe-from-pvp" title="Permanent link">&para;</a></h3>
 <p>No. Following the <a href="../rules/">Rules</a>, anything you leave unattended can be attacked, stolen from, or killed. Keep your team on you.</p>
 <h3 id="is-247-uptime-guaranteed-yet">Is 24/7 uptime guaranteed yet?<a class="headerlink" href="#is-247-uptime-guaranteed-yet" title="Permanent link">&para;</a></h3>
 <p>Not yet — the modded server is still being tuned. Expect occasional restarts. Check the <a href="../news/">News</a> page for downtime notices.</p>
 <h2 id="playing-on-the-server">Playing on the Server<a class="headerlink" href="#playing-on-the-server" title="Permanent link">&para;</a></h2>
 <h3 id="what-launchers-are-supported">What launchers are supported?<a class="headerlink" href="#what-launchers-are-supported" title="Permanent link">&para;</a></h3>
-<p>Any launcher that can install Fabric and load the Cobblemon modpack. The <a href="../install/">Install</a> page has step-by-step guides for CurseForge, ATLauncher, SKLauncher, TLauncher, Prism, and GDLauncher. Offline / cracked accounts are supported.</p>
+<p>Any launcher that can install Fabric. The <a href="../install/">Install</a> page has four setup paths — the AutoModpack routes work with any launcher (including SKLauncher and TLauncher), and the standard-modpack route works with any CurseForge-aware launcher (CurseForge, ATLauncher, Prism, GDLauncher, MultiMC). Offline / cracked accounts are supported.</p>
 <h3 id="the-launcher-says-outdated-client-or-outdated-server">The launcher says "outdated client" or "outdated server"<a class="headerlink" href="#the-launcher-says-outdated-client-or-outdated-server" title="Permanent link">&para;</a></h3>
 <p>Version mismatch. Check the server's current version in the <a href="../#live-server-status">status box</a> and reinstall the Fabric loader / modpack for that exact Minecraft version.</p>
 <h2 id="still-have-a-question">Still have a question?<a class="headerlink" href="#still-have-a-question" title="Permanent link">&para;</a></h2>

@@ -403,8 +403,153 @@ details.announcement > summary.announcement-summary:focus-visible {
     border-radius: 10px;
 }
 
+/* ---------------------------------------------------------------------
+   7. Modlist (Install page)
+   Renders the auto-generated mod list from assets/modlist.html.
+   --------------------------------------------------------------------- */
+
+.modlist {
+    margin: 1rem 0 2rem;
+}
+
+.modlist-loading,
+.modlist-empty,
+.modlist-error {
+    padding: 1rem;
+    text-align: center;
+    color: var(--md-default-fg-color--light);
+    background: var(--md-default-fg-color--lightest);
+    border-radius: 8px;
+    margin: 0;
+}
+
+.modlist-error {
+    background: rgba(239, 68, 68, 0.08);
+    color: var(--md-default-fg-color);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Controls row (search + count) */
+.modlist-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+    padding: 0.4rem 0.2rem;
+}
+
+.modlist-search-wrap {
+    flex: 1 1 260px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--md-default-bg-color);
+    border: 1px solid var(--md-default-fg-color--lightest);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    transition: border-color 0.15s ease;
+}
+
+.modlist-search-wrap:focus-within {
+    border-color: var(--md-accent-fg-color);
+}
+
+.modlist-search-icon {
+    font-size: 0.9rem;
+    opacity: 0.6;
+}
+
+.modlist-search {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--md-default-fg-color);
+    font: inherit;
+    width: 100%;
+    padding: 0;
+}
+
+.modlist-search::placeholder {
+    color: var(--md-default-fg-color--light);
+}
+
+.modlist-count {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--md-default-fg-color--light);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
+
+/* Items list — 2 columns on wider viewports, 1 column on mobile */
+.modlist-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.4rem 1rem;
+    border-top: 1px solid var(--md-default-fg-color--lightest);
+    padding-top: 0.5rem;
+}
+
+.modlist-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.35rem 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.12s ease;
+    min-width: 0;
+}
+
+.modlist-item:hover {
+    background: var(--md-default-fg-color--lightest);
+}
+
+.modlist-item > a {
+    color: var(--md-typeset-a-color);
+    text-decoration: none;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.modlist-item > a:hover {
+    text-decoration: underline;
+}
+
+/* Platform badges */
+.modlist-badge {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    height: 1.4rem;
+    padding: 0 0.35rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #fff;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.modlist-badge--curseforge { background: #F16436; }   /* CurseForge orange */
+.modlist-badge--modrinth   { background: #1BD96A; color: #0a3d1f; text-shadow: none; }  /* Modrinth green */
+.modlist-badge--github     { background: #24292f; }
+.modlist-badge--other      { background: var(--md-default-fg-color--light); }
+
 /* =====================================================================
-   7. Cobblemon-branch overrides — Pokémon-themed accents
+   8. Cobblemon-branch overrides — Pokémon-themed accents
    ===================================================================== */
 
 .activity-header {
@@ -434,123 +579,4 @@ details.announcement > summary.announcement-summary:focus-visible {
     border-color: var(--md-accent-fg-color);
     transform: translateY(-2px);
     transition: transform 0.15s ease, border-color 0.15s ease;
-}
-
-/* =====================================================================
-   8. Mod list grid
-   Rendered by initModLists() into any .mod-list[data-source] container.
-   ===================================================================== */
-
-.mod-list-loading,
-.mod-list-empty,
-.mod-list-error {
-    padding: 1rem 1.25rem;
-    text-align: center;
-    color: var(--md-default-fg-color--light);
-    background: var(--md-default-bg-color);
-    border: 1px dashed var(--md-default-fg-color--lightest);
-    border-radius: 8px;
-    margin: 0.75rem 0;
-}
-
-.mod-list-error {
-    color: #ef4444;
-    border-color: rgba(239, 68, 68, 0.35);
-}
-
-.mod-list-toolbar {
-    display: flex;
-    gap: 0.75rem;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0.75rem 0;
-    flex-wrap: wrap;
-}
-
-.mod-list-filter {
-    flex: 1 1 240px;
-    min-width: 0;
-    padding: 0.5rem 0.85rem;
-    border: 1px solid var(--md-default-fg-color--lightest);
-    border-radius: 6px;
-    background: var(--md-default-bg-color);
-    color: var(--md-default-fg-color);
-    font-size: 0.9rem;
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-
-.mod-list-filter:focus {
-    outline: none;
-    border-color: var(--md-accent-fg-color);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--md-accent-fg-color) 25%, transparent);
-}
-
-.mod-list-count {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--md-default-fg-color--light);
-    padding: 0.25rem 0.6rem;
-    background: var(--md-default-fg-color--lightest);
-    border-radius: 999px;
-    white-space: nowrap;
-}
-
-.mod-list-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 0.5rem;
-    margin: 0.5rem 0 1.5rem;
-}
-
-.mod-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background: var(--md-default-bg-color);
-    color: var(--md-default-fg-color);
-    border: 1px solid var(--md-default-fg-color--lightest);
-    border-radius: 6px;
-    font-size: 0.88rem;
-    text-decoration: none;
-    line-height: 1.3;
-    transition:
-        background-color 0.15s ease,
-        border-color 0.15s ease,
-        transform 0.1s ease;
-}
-
-.mod-link:hover,
-.mod-link:focus-visible {
-    background: var(--md-default-fg-color--lightest);
-    border-color: var(--md-accent-fg-color);
-    color: var(--md-default-fg-color);
-    text-decoration: none;
-    transform: translateY(-1px);
-    outline: none;
-}
-
-.mod-link:focus-visible {
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--md-accent-fg-color) 25%, transparent);
-}
-
-.mod-link-name {
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.mod-link-arrow {
-    flex: 0 0 auto;
-    opacity: 0.5;
-    font-size: 0.85rem;
-    transition: opacity 0.15s ease;
-}
-
-.mod-link:hover .mod-link-arrow,
-.mod-link:focus-visible .mod-link-arrow {
-    opacity: 1;
 }

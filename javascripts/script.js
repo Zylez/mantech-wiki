@@ -1,10 +1,15 @@
 /* =====================================================================
-   Very Cool Cobblemon Server — front-end script
-   - Live server status
-   - Live activity feed with icons + relative timestamps
-   - Announcements: title-collapsible + section-level Collapse/Expand all
-   - Mod list: parses docs/assets/modlist.html into an
-     alphabetized, filterable grid of CurseForge/Modrinth links
+   Very Cool Anarchy Server / Very Cool Cobblemon Server
+   Front-end script
+
+   - Fetches live server status and renders it
+   - Fetches announcements: each is a title-collapsible; the whole
+     section also has a "Collapse all / Expand all" toggle
+   - Fetches recent server activity and renders it with icons + relative
+     timestamps
+   - On the Install page (cobblemon branch): fetches modlist.html from
+     the site's assets folder, parses it, and renders a filterable list
+     of mods with CurseForge / Modrinth badges
    ===================================================================== */
 
 // ---- Config -----------------------------------------------------------
@@ -13,6 +18,8 @@ const API_BASE = 'https://man.servegame.com/api';
 const STATUS_ENDPOINT   = `${API_BASE}/minecraft-status`;
 const ACTIVITY_ENDPOINT = `${API_BASE}/discord-activity`;
 
+// Announcements shorter than this render pre-expanded so quick notices
+// don't force an extra click; long ones start collapsed.
 const ANNOUNCEMENT_AUTO_OPEN_CHARS = 220;
 
 // ---- Utilities --------------------------------------------------------
@@ -23,6 +30,10 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+/**
+ * Sanitize announcement HTML so we can safely render server-provided
+ * content. Allows a small whitelist of tags and strips everything else.
+ */
 function sanitizeAnnouncementHtml(html) {
     const allowedTags = new Set([
         'B', 'STRONG', 'I', 'EM', 'U', 'BR', 'P', 'UL', 'OL', 'LI',
@@ -108,7 +119,6 @@ function renderAnnouncement(item) {
     if (textLength(safeContent) <= ANNOUNCEMENT_AUTO_OPEN_CHARS) {
         details.setAttribute('open', '');
     }
-
     details.innerHTML = `
         <summary class="admonition-title announcement-summary">
             <span class="announcement-summary-text">${title}</span>
@@ -162,7 +172,6 @@ function renderAnnouncementsSection(list, container) {
             setMode('collapse');
         }
     });
-
     listEl.addEventListener('toggle', () => {
         setMode(anyOpen() ? 'collapse' : 'expand');
     }, true);
@@ -271,121 +280,138 @@ function loadDiscordActivity() {
         });
 }
 
-// ---- Mod list ---------------------------------------------------------
+// ---- Modlist (Install page) -------------------------------------------
 //
-// Populates any element with class="mod-list" and a data-source attribute
-// pointing at an HTML file that follows the CurseForge modlist.html
-// export format:
-//
-//   <ul><li><a href="...">Mod Name</a></li>...</ul>
-//
-// Multiple <a> per <li> or nested lists are handled: we grab every <a>
-// under any <li>. Blank names or non-http hrefs are filtered out.
+// The Install page can contain an element like:
+//     <div id="mod-list" data-modlist-src="../assets/modlist.html"></div>
+// The script fetches that HTML, extracts every <a> tag, classifies each
+// by its host (CurseForge / Modrinth / other), and renders a searchable
+// list. On any page without #mod-list, this function is a no-op.
 
-function parseModList(html) {
-    const parser = new DOMParser();
-    // The exported file is a fragment (no <html>/<body>); parseFromString
-    // wraps it automatically so querySelectorAll still works.
-    const doc = parser.parseFromString(String(html ?? ''), 'text/html');
-    const links = [...doc.querySelectorAll('li a[href]')];
-    const seen = new Set();
-    const mods = [];
-    for (const a of links) {
-        const name = (a.textContent || '').trim();
-        const url  = a.getAttribute('href').trim();
-        if (!name || !url) continue;
-        if (!/^https?:\/\//i.test(url)) continue;
-        // Dedupe by URL (same mod listed twice = ignore repeat)
-        if (seen.has(url)) continue;
-        seen.add(url);
-        mods.push({ name, url });
+/** Classify a mod link by its host domain. */
+function classifyModHost(url) {
+    try {
+        const host = new URL(url, window.location.origin).hostname.replace(/^www\./, '');
+        if (host.endsWith('curseforge.com'))       return { kind: 'curseforge', label: 'CurseForge', short: 'CF' };
+        if (host.endsWith('modrinth.com'))          return { kind: 'modrinth',   label: 'Modrinth',   short: 'MR' };
+        if (host.endsWith('github.com'))            return { kind: 'github',     label: 'GitHub',     short: 'GH' };
+        return { kind: 'other', label: 'Other', short: '?' };
+    } catch (e) {
+        return { kind: 'other', label: 'Other', short: '?' };
     }
-    // Alphabetical, case-insensitive, locale-aware (handles accents nicely)
-    mods.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-    return mods;
 }
 
-function renderModListGrid(container, mods) {
-    if (mods.length === 0) {
+/** Extract mod entries from a raw modlist.html string. */
+function parseModlist(rawHtml) {
+    const doc = new DOMParser().parseFromString(rawHtml, 'text/html');
+    const anchors = [...doc.querySelectorAll('a[href]')];
+    const seen = new Set();
+    const entries = [];
+    for (const a of anchors) {
+        const name = (a.textContent || '').trim();
+        const url  = (a.getAttribute('href') || '').trim();
+        if (!name || !url) continue;
+        // Allow only safe URL schemes
+        if (!/^https?:/i.test(url)) continue;
+        const key = url.toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        entries.push({ name, url, ...classifyModHost(url) });
+    }
+    // Sort alphabetically by mod name — the source file's order isn't
+    // meaningful and alphabetical is scanable.
+    entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+    return entries;
+}
+
+/** Render the modlist into the target container. */
+function renderModlist(container, entries) {
+    container.innerHTML = '';
+    if (entries.length === 0) {
         container.innerHTML = `
-            <p class="mod-list-empty">
-                No mods listed yet. Once <code>modlist.html</code> is populated,
-                mods will appear here automatically.
-            </p>`;
+            <p class="modlist-empty">
+                No mods found in <code>modlist.html</code>. If you're the admin,
+                make sure the file is present in <code>docs/assets/</code>.
+            </p>
+        `;
         return;
     }
 
-    container.innerHTML = `
-        <div class="mod-list-toolbar">
-            <input type="search"
-                   class="mod-list-filter"
-                   placeholder="Filter mods…"
-                   aria-label="Filter mods by name">
-            <span class="mod-list-count" aria-live="polite">${mods.length} mods</span>
-        </div>
-        <div class="mod-list-grid" role="list">
-            ${mods.map(m => `
-                <a class="mod-link"
-                   role="listitem"
-                   href="${escapeHtml(m.url)}"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   data-search="${escapeHtml(m.name.toLowerCase())}">
-                    <span class="mod-link-name">${escapeHtml(m.name)}</span>
-                    <span class="mod-link-arrow" aria-hidden="true">↗</span>
-                </a>
-            `).join('')}
-        </div>
+    // Controls row: search input + count
+    const controls = document.createElement('div');
+    controls.className = 'modlist-controls';
+    controls.innerHTML = `
+        <label class="modlist-search-wrap">
+            <span class="modlist-search-icon" aria-hidden="true">🔍</span>
+            <input type="search" class="modlist-search"
+                   placeholder="Filter mods…" autocomplete="off">
+        </label>
+        <span class="modlist-count" data-total="${entries.length}">
+            ${entries.length} mods
+        </span>
     `;
+    container.appendChild(controls);
 
-    // Wire up the filter
-    const input = container.querySelector('.mod-list-filter');
-    const count = container.querySelector('.mod-list-count');
-    const items = [...container.querySelectorAll('.mod-link')];
-    const total = mods.length;
+    // List
+    const list = document.createElement('ul');
+    list.className = 'modlist-items';
+    for (const entry of entries) {
+        const li = document.createElement('li');
+        li.className = 'modlist-item';
+        li.dataset.name = entry.name.toLowerCase();
+        li.innerHTML = `
+            <span class="modlist-badge modlist-badge--${entry.kind}"
+                  title="${escapeHtml(entry.label)}">${escapeHtml(entry.short)}</span>
+            <a href="${escapeHtml(entry.url)}"
+               target="_blank" rel="noopener noreferrer">${escapeHtml(entry.name)}</a>
+        `;
+        list.appendChild(li);
+    }
+    container.appendChild(list);
 
-    input.addEventListener('input', () => {
-        const q = input.value.trim().toLowerCase();
-        if (!q) {
-            items.forEach(el => el.hidden = false);
-            count.textContent = `${total} mods`;
-            return;
-        }
+    // Wire up filtering
+    const search = controls.querySelector('.modlist-search');
+    const count  = controls.querySelector('.modlist-count');
+    const items  = [...list.querySelectorAll('.modlist-item')];
+    const applyFilter = () => {
+        const q = search.value.trim().toLowerCase();
         let visible = 0;
-        for (const el of items) {
-            const match = el.dataset.search.includes(q);
-            el.hidden = !match;
+        for (const li of items) {
+            const match = !q || li.dataset.name.includes(q);
+            li.style.display = match ? '' : 'none';
             if (match) visible++;
         }
-        count.textContent = `${visible} of ${total}`;
-    });
+        const total = entries.length;
+        count.textContent = q ? `${visible} of ${total} mods` : `${total} mods`;
+    };
+    search.addEventListener('input', applyFilter);
 }
 
-function loadModList(container) {
-    const sourceUrl = container.dataset.source;
-    if (!sourceUrl) return;
-    container.innerHTML = '<p class="mod-list-loading">Loading mod list…</p>';
-    fetch(sourceUrl)
+function loadModlist() {
+    const container = document.getElementById('mod-list');
+    if (!container) return;
+
+    const src = container.dataset.modlistSrc || 'modlist.html';
+    container.innerHTML = '<p class="modlist-loading">Loading mod list…</p>';
+
+    fetch(src)
         .then(r => {
-            if (!r.ok) throw new Error(`Fetch failed: ${r.status}`);
+            if (!r.ok) throw new Error(`HTTP ${r.status}`);
             return r.text();
         })
         .then(html => {
-            const mods = parseModList(html);
-            renderModListGrid(container, mods);
+            const entries = parseModlist(html);
+            renderModlist(container, entries);
         })
         .catch(err => {
             container.innerHTML = `
-                <p class="mod-list-error">
-                    Mod list unavailable. If you're the site admin,
-                    check that <code>${escapeHtml(sourceUrl)}</code> exists and is reachable.
-                </p>`;
-            console.error('Mod list error:', err);
+                <p class="modlist-error">
+                    Couldn't load the mod list (${escapeHtml(err.message)}).
+                    Check that <code>${escapeHtml(src)}</code> exists on the site.
+                </p>
+            `;
+            console.error('Modlist error:', err);
         });
-}
-
-function initModLists() {
-    document.querySelectorAll('.mod-list[data-source]').forEach(loadModList);
 }
 
 // ---- Bootstrapping ----------------------------------------------------
@@ -393,7 +419,7 @@ function initModLists() {
 function boot() {
     getServerStatus();
     loadDiscordActivity();
-    initModLists();
+    loadModlist();
 }
 
 if (typeof document$ !== 'undefined' && document$.subscribe) {

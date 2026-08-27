@@ -1027,13 +1027,13 @@
 <li>Adding AutoModpack to your own Fabric instance.</li>
 <li>A standard CurseForge-format modpack that installs everything at once (no live sync — for players who prefer a static setup).</li>
 </ul>
-<p>Or you can install every file manually. The list of required mods is auto-generated on the Install page from the pack's <code>modlist.html</code>.</p>
+<p>Or you can install every file manually. The list of required mods is fetched live on the Install page from the server itself.</p>
 <h3 id="which-minecraft-version">Which Minecraft version?<a class="headerlink" href="#which-minecraft-version" title="Permanent link">&para;</a></h3>
 <p><strong>Minecraft 1.21.1</strong>, matching Cobblemon's supported version. We plan to stay here for a while — Cobblemon's release cadence means the pack is stable on 1.21.1 for the foreseeable future. Match it exactly when installing Fabric; adjacent Minecraft versions won't connect.</p>
 <h3 id="do-i-have-to-use-the-exact-pack-we-provide">Do I have to use the exact pack we provide?<a class="headerlink" href="#do-i-have-to-use-the-exact-pack-we-provide" title="Permanent link">&para;</a></h3>
 <p>For the <em>server-required</em> mods, yes — the server checks that Fabric API, Cobblemon, and the rest of the sync list match. Adding <em>client-side-only</em> mods (shaders, minimap, cosmetics) is fine as long as they don't affect server sync. If you're using AutoModpack, your own additions live in your regular <code>.minecraft/mods/</code> folder and don't conflict with what AutoModpack downloads.</p>
 <h3 id="wheres-the-full-mod-list">Where's the full mod list?<a class="headerlink" href="#wheres-the-full-mod-list" title="Permanent link">&para;</a></h3>
-<p>On the <a href="../install/#required-mods">Install</a> page — it's auto-generated from the pack's latest <code>modlist.html</code> export, so it stays in sync with what the server actually requires.</p>
+<p>On the <a href="../install/#required-mods">Install</a> page — it's fetched live from the server (reading each mod jar's metadata directly), so it stays in sync with what's actually installed on the server.</p>
 <h3 id="are-pokemon-safe-from-pvp">Are Pokémon "safe" from PvP?<a class="headerlink" href="#are-pokemon-safe-from-pvp" title="Permanent link">&para;</a></h3>
 <p>No. Following the <a href="../rules/">Rules</a>, anything you leave unattended can be attacked, stolen from, or killed. Keep your team on you.</p>
 <h3 id="is-247-uptime-guaranteed-yet">Is 24/7 uptime guaranteed yet?<a class="headerlink" href="#is-247-uptime-guaranteed-yet" title="Permanent link">&para;</a></h3>

@@ -283,61 +283,66 @@ function loadDiscordActivity() {
 // ---- Modlist (Install page) -------------------------------------------
 //
 // The Install page can contain an element like:
-//     <div id="mod-list" data-modlist-src="../assets/modlist.html"></div>
-// The script fetches that HTML, extracts every <a> tag, classifies each
-// by its host (CurseForge / Modrinth / other), and renders a searchable
-// list. On any page without #mod-list, this function is a no-op.
+//     <div id="mod-list"
+//          data-modlist-src="https://man.servegame.com/api/modlist"></div>
+//
+// The script fetches that URL, expects the JSON shape produced by the
+// Pi's /api/modlist route:
+//     { status, mods: [{ id, name, url, note? }], total, cached, ... }
+// classifies each entry's URL by host (CurseForge / Modrinth / GitHub /
+// other), and renders a searchable, compact chip layout. Mods without
+// a URL render as a static chip whose `note` shows as a tooltip.
+// On any page without #mod-list, this function is a no-op.
 
-/** Classify a mod link by its host domain. */
+/** Classify a mod link by its host domain. Returns null when no URL. */
 function classifyModHost(url) {
+    if (!url) return { kind: 'nolink', label: 'No download link', short: '—' };
     try {
         const host = new URL(url, window.location.origin).hostname.replace(/^www\./, '');
-        if (host.endsWith('curseforge.com'))       return { kind: 'curseforge', label: 'CurseForge', short: 'CF' };
-        if (host.endsWith('modrinth.com'))          return { kind: 'modrinth',   label: 'Modrinth',   short: 'MR' };
-        if (host.endsWith('github.com'))            return { kind: 'github',     label: 'GitHub',     short: 'GH' };
+        if (host.endsWith('curseforge.com')) return { kind: 'curseforge', label: 'CurseForge', short: 'CF' };
+        if (host.endsWith('modrinth.com'))   return { kind: 'modrinth',   label: 'Modrinth',   short: 'MR' };
+        if (host.endsWith('github.com'))     return { kind: 'github',     label: 'GitHub',     short: 'GH' };
         return { kind: 'other', label: 'Other', short: '?' };
     } catch (e) {
         return { kind: 'other', label: 'Other', short: '?' };
     }
 }
 
-/** Extract mod entries from a raw modlist.html string. */
-function parseModlist(rawHtml) {
-    const doc = new DOMParser().parseFromString(rawHtml, 'text/html');
-    const anchors = [...doc.querySelectorAll('a[href]')];
-    const seen = new Set();
-    const entries = [];
-    for (const a of anchors) {
-        const name = (a.textContent || '').trim();
-        const url  = (a.getAttribute('href') || '').trim();
-        if (!name || !url) continue;
-        // Allow only safe URL schemes
-        if (!/^https?:/i.test(url)) continue;
-        const key = url.toLowerCase();
-        if (seen.has(key)) continue;
-        seen.add(key);
-        entries.push({ name, url, ...classifyModHost(url) });
-    }
-    // Sort alphabetically by mod name — the source file's order isn't
-    // meaningful and alphabetical is scanable.
-    entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
-    return entries;
+/** Normalize an API mod entry into a display-ready object. */
+function normalizeModEntry(mod) {
+    const name = (mod.name || mod.id || '').trim();
+    const url  = typeof mod.url === 'string' ? mod.url.trim() : null;
+    const note = typeof mod.note === 'string' ? mod.note.trim() : null;
+    return { name, url: url || null, note, ...classifyModHost(url) };
 }
 
-/** Render the modlist into the target container. */
-function renderModlist(container, entries) {
+/** Render the modlist into the target container as compact chips. */
+function renderModlist(container, entries, meta) {
     container.innerHTML = '';
+
     if (entries.length === 0) {
         container.innerHTML = `
             <p class="modlist-empty">
-                No mods found in <code>modlist.html</code>. If you're the admin,
-                make sure the file is present in <code>docs/assets/</code>.
+                No mods returned by the API. If you're the admin, check the
+                server logs and the SSH extractor.
             </p>
         `;
         return;
     }
 
-    // Controls row: search input + count
+    // Header row: total count, breakdown by source, cache indicator
+    const total = entries.length;
+    const breakdown = entries.reduce((acc, e) => {
+        acc[e.kind] = (acc[e.kind] || 0) + 1;
+        return acc;
+    }, {});
+    const breakdownParts = [];
+    if (breakdown.curseforge) breakdownParts.push(`${breakdown.curseforge} CurseForge`);
+    if (breakdown.modrinth)   breakdownParts.push(`${breakdown.modrinth} Modrinth`);
+    if (breakdown.github)     breakdownParts.push(`${breakdown.github} GitHub`);
+    if (breakdown.other)      breakdownParts.push(`${breakdown.other} other`);
+    if (breakdown.nolink)     breakdownParts.push(`${breakdown.nolink} no link`);
+
     const controls = document.createElement('div');
     controls.className = 'modlist-controls';
     controls.innerHTML = `
@@ -346,30 +351,60 @@ function renderModlist(container, entries) {
             <input type="search" class="modlist-search"
                    placeholder="Filter mods…" autocomplete="off">
         </label>
-        <span class="modlist-count" data-total="${entries.length}">
-            ${entries.length} mods
+        <span class="modlist-count" data-total="${total}">
+            ${total} mods
         </span>
     `;
     container.appendChild(controls);
 
-    // List
+    if (breakdownParts.length > 0) {
+        const subtitle = document.createElement('div');
+        subtitle.className = 'modlist-subtitle';
+        const cachedLabel = meta && meta.cached ? ' · cached' : '';
+        subtitle.textContent = `${breakdownParts.join(' · ')}${cachedLabel}`;
+        container.appendChild(subtitle);
+    }
+
+    // The chip list itself
     const list = document.createElement('ul');
     list.className = 'modlist-items';
     for (const entry of entries) {
         const li = document.createElement('li');
-        li.className = 'modlist-item';
+        li.className = `modlist-item modlist-item--${entry.kind}`;
         li.dataset.name = entry.name.toLowerCase();
-        li.innerHTML = `
-            <span class="modlist-badge modlist-badge--${entry.kind}"
-                  title="${escapeHtml(entry.label)}">${escapeHtml(entry.short)}</span>
-            <a href="${escapeHtml(entry.url)}"
-               target="_blank" rel="noopener noreferrer">${escapeHtml(entry.name)}</a>
-        `;
+
+        const badge = `<span class="modlist-badge" aria-label="${escapeHtml(entry.label)}" title="${escapeHtml(entry.label)}">${escapeHtml(entry.short)}</span>`;
+        const nameSpan = `<span class="modlist-name">${escapeHtml(entry.name)}</span>`;
+        const noteAttr = entry.note ? ` title="${escapeHtml(entry.note)}"` : '';
+
+        if (entry.url) {
+            li.innerHTML = `
+                <a class="modlist-link" href="${escapeHtml(entry.url)}"
+                   target="_blank" rel="noopener noreferrer"${noteAttr}>
+                    ${badge}${nameSpan}
+                </a>
+            `;
+        } else {
+            // No download link: render as a static chip with the note as tooltip
+            li.innerHTML = `
+                <span class="modlist-link modlist-link--static"${noteAttr}>
+                    ${badge}${nameSpan}
+                </span>
+            `;
+            if (entry.note) {
+                const noteEl = document.createElement('span');
+                noteEl.className = 'modlist-note-indicator';
+                noteEl.setAttribute('aria-hidden', 'true');
+                noteEl.textContent = 'ⓘ';
+                li.querySelector('.modlist-link').appendChild(noteEl);
+            }
+        }
+
         list.appendChild(li);
     }
     container.appendChild(list);
 
-    // Wire up filtering
+    // Filter wiring
     const search = controls.querySelector('.modlist-search');
     const count  = controls.querySelector('.modlist-count');
     const items  = [...list.querySelectorAll('.modlist-item')];
@@ -381,7 +416,6 @@ function renderModlist(container, entries) {
             li.style.display = match ? '' : 'none';
             if (match) visible++;
         }
-        const total = entries.length;
         count.textContent = q ? `${visible} of ${total} mods` : `${total} mods`;
     };
     search.addEventListener('input', applyFilter);
@@ -391,23 +425,35 @@ function loadModlist() {
     const container = document.getElementById('mod-list');
     if (!container) return;
 
-    const src = container.dataset.modlistSrc || 'modlist.html';
+    const src = container.dataset.modlistSrc;
+    if (!src) {
+        container.innerHTML = '<p class="modlist-error">Missing <code>data-modlist-src</code> attribute.</p>';
+        return;
+    }
+
     container.innerHTML = '<p class="modlist-loading">Loading mod list…</p>';
 
     fetch(src)
         .then(r => {
             if (!r.ok) throw new Error(`HTTP ${r.status}`);
-            return r.text();
+            return r.json();
         })
-        .then(html => {
-            const entries = parseModlist(html);
-            renderModlist(container, entries);
+        .then(data => {
+            if (!data || data.status === 'error') {
+                throw new Error((data && data.message) || 'API returned error');
+            }
+            const rawMods = Array.isArray(data.mods) ? data.mods : [];
+            const entries = rawMods.map(normalizeModEntry)
+                                    .filter(e => e.name);
+            // Sort alphabetically (the API also sorts, but re-sort defensively)
+            entries.sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }));
+            renderModlist(container, entries, { cached: !!data.cached });
         })
         .catch(err => {
             container.innerHTML = `
                 <p class="modlist-error">
                     Couldn't load the mod list (${escapeHtml(err.message)}).
-                    Check that <code>${escapeHtml(src)}</code> exists on the site.
+                    The AutoModpack methods above still work without it.
                 </p>
             `;
             console.error('Modlist error:', err);

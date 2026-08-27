@@ -405,16 +405,23 @@ details.announcement > summary.announcement-summary:focus-visible {
 
 /* ---------------------------------------------------------------------
    7. Modlist (Install page)
-   Renders the auto-generated mod list from assets/modlist.html.
+   Renders the mod list from the server API as compact chip pills that
+   flow horizontally and wrap. Search filter above, breakdown subtitle
+   below the header. Mods without a URL render as static chips.
+
+   All selectors below are prefixed with `.md-typeset` so they win
+   against Material for MkDocs' default `.md-typeset ul li { ... }`
+   rules (which would otherwise force each <li> to render block-level
+   and stack our chips vertically).
    --------------------------------------------------------------------- */
 
-.modlist {
+.md-typeset .modlist {
     margin: 1rem 0 2rem;
 }
 
-.modlist-loading,
-.modlist-empty,
-.modlist-error {
+.md-typeset .modlist-loading,
+.md-typeset .modlist-empty,
+.md-typeset .modlist-error {
     padding: 1rem;
     text-align: center;
     color: var(--md-default-fg-color--light);
@@ -423,24 +430,24 @@ details.announcement > summary.announcement-summary:focus-visible {
     margin: 0;
 }
 
-.modlist-error {
+.md-typeset .modlist-error {
     background: rgba(239, 68, 68, 0.08);
     color: var(--md-default-fg-color);
     border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 /* Controls row (search + count) */
-.modlist-controls {
+.md-typeset .modlist-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     flex-wrap: wrap;
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.4rem;
     padding: 0.4rem 0.2rem;
 }
 
-.modlist-search-wrap {
+.md-typeset .modlist-search-wrap {
     flex: 1 1 260px;
     display: flex;
     align-items: center;
@@ -452,16 +459,16 @@ details.announcement > summary.announcement-summary:focus-visible {
     transition: border-color 0.15s ease;
 }
 
-.modlist-search-wrap:focus-within {
+.md-typeset .modlist-search-wrap:focus-within {
     border-color: var(--md-accent-fg-color);
 }
 
-.modlist-search-icon {
+.md-typeset .modlist-search-icon {
     font-size: 0.9rem;
     opacity: 0.6;
 }
 
-.modlist-search {
+.md-typeset .modlist-search {
     appearance: none;
     border: none;
     outline: none;
@@ -472,11 +479,11 @@ details.announcement > summary.announcement-summary:focus-visible {
     padding: 0;
 }
 
-.modlist-search::placeholder {
+.md-typeset .modlist-search::placeholder {
     color: var(--md-default-fg-color--light);
 }
 
-.modlist-count {
+.md-typeset .modlist-count {
     font-size: 0.8rem;
     font-weight: 600;
     color: var(--md-default-fg-color--light);
@@ -485,68 +492,127 @@ details.announcement > summary.announcement-summary:focus-visible {
     white-space: nowrap;
 }
 
-/* Items list — 2 columns on wider viewports, 1 column on mobile */
-.modlist-items {
+/* Small subtitle under the controls row — breakdown by source + cache flag */
+.md-typeset .modlist-subtitle {
+    font-size: 0.75rem;
+    color: var(--md-default-fg-color--light);
+    margin: 0 0.2rem 0.75rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Chip flow — compact horizontally-wrapping list.
+   The .md-typeset prefix here is what actually fixes the "one chip per
+   row" bug: without it, Material's `.md-typeset ul { padding-left: 2em }`
+   and `.md-typeset ul li { display: list-item; margin-bottom: 0.5em }`
+   would win on specificity. */
+.md-typeset ul.modlist-items {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 0.4rem 1rem;
-    border-top: 1px solid var(--md-default-fg-color--lightest);
-    padding-top: 0.5rem;
-}
-
-.modlist-item {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.md-typeset ul.modlist-items > li.modlist-item {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* Make sure no leftover ::before pseudo-marker leaks through */
+.md-typeset ul.modlist-items > li.modlist-item::before {
+    content: none;
+    display: none;
+}
+
+/* The whole chip is one visual unit. Anchor form for linked mods, span
+   form for URL-less mods (see .modlist-link--static below). */
+.md-typeset .modlist-link {
+    display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.35rem 0.5rem;
-    border-radius: 6px;
-    transition: background-color 0.12s ease;
-    min-width: 0;
-}
-
-.modlist-item:hover {
+    gap: 0.35rem;
+    padding: 0.25rem 0.7rem 0.25rem 0.3rem;
+    border-radius: 999px;
     background: var(--md-default-fg-color--lightest);
+    border: 1px solid transparent;
+    color: var(--md-default-fg-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    transition: background-color 0.12s ease, border-color 0.12s ease, transform 0.12s ease;
+    max-width: 100%;
 }
 
-.modlist-item > a {
-    color: var(--md-typeset-a-color);
+.md-typeset .modlist-link:hover {
+    background: var(--md-default-bg-color);
+    border-color: var(--md-accent-fg-color);
+    color: var(--md-default-fg-color);
     text-decoration: none;
-    font-weight: 500;
+    transform: translateY(-1px);
+}
+
+.md-typeset .modlist-link:focus-visible {
+    outline: 2px solid var(--md-accent-fg-color);
+    outline-offset: 2px;
+}
+
+.md-typeset .modlist-link--static {
+    cursor: default;
+    opacity: 0.75;
+    font-style: italic;
+}
+
+.md-typeset .modlist-link--static:hover {
+    background: var(--md-default-fg-color--lightest);
+    border-color: transparent;
+    transform: none;
+}
+
+.md-typeset .modlist-name {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    flex: 1 1 auto;
-    min-width: 0;
+    max-width: 22rem;
+    font-weight: 500;
 }
 
-.modlist-item > a:hover {
-    text-decoration: underline;
+/* Small (ⓘ) marker on chips that have a note but no URL */
+.md-typeset .modlist-note-indicator {
+    margin-left: 0.2rem;
+    font-size: 0.8rem;
+    opacity: 0.7;
 }
 
 /* Platform badges */
-.modlist-badge {
+.md-typeset .modlist-badge {
     flex: 0 0 auto;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 2rem;
-    height: 1.4rem;
+    min-width: 1.75rem;
+    height: 1.25rem;
     padding: 0 0.35rem;
-    border-radius: 4px;
-    font-size: 0.7rem;
+    border-radius: 999px;
+    font-size: 0.65rem;
     font-weight: 700;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     color: #fff;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-.modlist-badge--curseforge { background: #F16436; }   /* CurseForge orange */
-.modlist-badge--modrinth   { background: #1BD96A; color: #0a3d1f; text-shadow: none; }  /* Modrinth green */
-.modlist-badge--github     { background: #24292f; }
-.modlist-badge--other      { background: var(--md-default-fg-color--light); }
+.md-typeset .modlist-item--curseforge .modlist-badge { background: #F16436; }
+.md-typeset .modlist-item--modrinth   .modlist-badge { background: #1BD96A; color: #0a3d1f; text-shadow: none; }
+.md-typeset .modlist-item--github     .modlist-badge { background: #24292f; }
+.md-typeset .modlist-item--other      .modlist-badge { background: var(--md-default-fg-color--light); }
+.md-typeset .modlist-item--nolink     .modlist-badge {
+    background: transparent;
+    color: var(--md-default-fg-color--light);
+    text-shadow: none;
+    border: 1px dashed var(--md-default-fg-color--light);
+}
 
 /* =====================================================================
    8. Cobblemon-branch overrides — Pokémon-themed accents

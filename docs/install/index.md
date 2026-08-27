@@ -21,7 +21,7 @@ Everything you need to get on the server. Pick whichever setup approach suits yo
     This is a clean Fabric instance with **AutoModpack pre-installed** and the required client-side resource packs already in place. Once launched, connecting to the server pulls in everything else automatically. Nothing to configure.
 
     **Download:**  
-    :fontawesome-solid-download: [Cobblemon Server – AutoModpack Base (.zip)](#){ .modpack-link title="https://e.pcloud.link/publink/show?code=XZNP8y7ZVvXDY3fR5qFauxOFgeuCnHiHtLiy" }
+    :fontawesome-solid-download: [Cobblemon Server – AutoModpack Base (.zip)](https://e.pcloud.link/publink/show?code=XZNP8y7ZVvXDY3fR5qFauxOFgeuCnHiHtLiy){ .modpack-link }
 
     **Steps (any CurseForge-aware launcher):**
 
@@ -61,7 +61,7 @@ Everything you need to get on the server. Pick whichever setup approach suits yo
     A regular CurseForge-format modpack containing a `modlist.html` — your launcher fetches every mod from Modrinth and CurseForge at import time and locks the versions in. Once installed, you connect like it's a vanilla server. No live sync; when the server updates its mods, you'll need to reimport a new version of this pack.
 
     **Download:**  
-    :fontawesome-solid-download: [Cobblemon Server – Standard Modpack (.zip)](#){ .modpack-link title="https://e.pcloud.link/publink/show?code=XZAP8y7ZOt4X6zRaGvRzE2r749dp5kmax3Fk" }
+    :fontawesome-solid-download: [Cobblemon Server – Standard Modpack (.zip)](https://e.pcloud.link/publink/show?code=XZAP8y7ZOt4X6zRaGvRzE2r749dp5kmax3Fk){ .modpack-link }
 
     **Steps (CurseForge, ATLauncher, Prism, GDLauncher, or MultiMC):**
 
@@ -122,9 +122,10 @@ Resource packs are needed to correctly display the custom content the server use
       | Pack | Source | Download |
 -->
 
-| Pack | Source | Download |
-|---|---|---|
-| _Add each required pack here_ | _e.g. Modrinth / CurseForge / direct_ | _link_ |
+| Pack | Source |
+|---|---|
+| Complete Cobblemon Collection | [Modrinth](https://modrinth.com/datapack/complete-cobblemon-collection-myths-and-legends-compat/versions?g=1.21.1&l=fabric)
+| COBBLEVERSE RCTmod RP | [Modrinth](https://modrinth.com/modpack/cobbleverse/versions)
 
 ## Verifying it Worked
 

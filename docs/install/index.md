@@ -124,7 +124,8 @@ Resource packs are needed to correctly display the custom content the server use
 
 | Pack | Source | Download |
 |---|---|---|
-| _Add each required pack here_ | _e.g. Modrinth / CurseForge / direct_ | _link_ |
+| Complete Cobblemon Collection | Modrinth | [Link](https://modrinth.com/datapack/complete-cobblemon-collection-myths-and-legends-compat) |
+| COBBLEVERSE RCTmod RP | Modpack | [Link](https://modrinth.com/modpack/cobbleverse) |
 
 ## Verifying it Worked
 

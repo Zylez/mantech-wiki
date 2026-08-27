@@ -21,7 +21,7 @@ Everything you need to get on the server. Pick whichever setup approach suits yo
     This is a clean Fabric instance with **AutoModpack pre-installed** and the required client-side resource packs already in place. Once launched, connecting to the server pulls in everything else automatically. Nothing to configure.
 
     **Download:**  
-    :fontawesome-solid-download: [Cobblemon Server – AutoModpack Base (.zip)](https://e.pcloud.link/publink/show?code=XZNP8y7ZVvXDY3fR5qFauxOFgeuCnHiHtLiy){ .modpack-link }
+    :fontawesome-solid-download: [Cobblemon Server – AutoModpack Base (.zip)](#){ .modpack-link title="Replace with your actual link" }
 
     **Steps (any CurseForge-aware launcher):**
 
@@ -61,7 +61,7 @@ Everything you need to get on the server. Pick whichever setup approach suits yo
     A regular CurseForge-format modpack containing a `modlist.html` — your launcher fetches every mod from Modrinth and CurseForge at import time and locks the versions in. Once installed, you connect like it's a vanilla server. No live sync; when the server updates its mods, you'll need to reimport a new version of this pack.
 
     **Download:**  
-    :fontawesome-solid-download: [Cobblemon Server – Standard Modpack (.zip)](https://e.pcloud.link/publink/show?code=XZAP8y7ZOt4X6zRaGvRzE2r749dp5kmax3Fk){ .modpack-link }
+    :fontawesome-solid-download: [Cobblemon Server – Standard Modpack (.zip)](#){ .modpack-link title="Replace with your actual link" }
 
     **Steps (CurseForge, ATLauncher, Prism, GDLauncher, or MultiMC):**
 
@@ -97,11 +97,11 @@ Everything you need to get on the server. Pick whichever setup approach suits yo
 
 ## Required Mods
 
-The list below is generated from the modpack's most recent `modlist.html` export and updates whenever the admin re-exports the file. Each mod links to its official download page.
+The list below is fetched live from the server. Whenever the server's mod folder changes, this list catches up on the next request (the API caches for 5 minutes to avoid hammering the server). Each entry links to the mod's official page — CurseForge, Modrinth, GitHub, or wherever the mod author publishes it.
 
 <div id="mod-list"
      class="modlist"
-     data-modlist-src="../assets/modlist.html"
+     data-modlist-src="https://man.servegame.com/api/modlist"
      aria-live="polite">
     <p class="modlist-loading">Loading mod list…</p>
 </div>
@@ -122,10 +122,9 @@ Resource packs are needed to correctly display the custom content the server use
       | Pack | Source | Download |
 -->
 
-| Pack | Source |
-|---|---|
-| Complete Cobblemon Collection | [Modrinth](https://modrinth.com/datapack/complete-cobblemon-collection-myths-and-legends-compat/versions?g=1.21.1&l=fabric)
-| COBBLEVERSE RCTmod RP | [Modrinth](https://modrinth.com/modpack/cobbleverse/versions)
+| Pack | Source | Download |
+|---|---|---|
+| _Add each required pack here_ | _e.g. Modrinth / CurseForge / direct_ | _link_ |
 
 ## Verifying it Worked
 
@@ -159,7 +158,7 @@ If any of these are missing, jump to [Troubleshooting](#troubleshooting) below.
     Some CurseForge packs only ship a `manifest.json` for licensing reasons. Use a CurseForge-aware launcher (CurseForge, ATLauncher, Prism, GDLauncher) — those fetch the actual mod files automatically. SKLauncher and TLauncher can't do this on their own.
 
 ??? question "The mod list on this page didn't load"
-    That means `assets/modlist.html` couldn't be fetched. If you're the admin, re-export the modpack and drop the updated `modlist.html` into `docs/assets/`. Otherwise, use one of the AutoModpack methods above — they don't rely on this list.
+    The list is fetched from the server's `/api/modlist` endpoint. If the API is unreachable — server offline, network hiccup — the list won't render. Use one of the AutoModpack methods above in the meantime; they don't rely on this list.
 
 ## Still stuck?
 

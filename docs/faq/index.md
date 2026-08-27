@@ -31,7 +31,7 @@ The server uses **AutoModpack**, which means the client doesn't need a fixed sta
 - Adding AutoModpack to your own Fabric instance.
 - A standard CurseForge-format modpack that installs everything at once (no live sync — for players who prefer a static setup).
 
-Or you can install every file manually. The list of required mods is auto-generated on the Install page from the pack's `modlist.html`.
+Or you can install every file manually. The list of required mods is fetched live on the Install page from the server itself.
 
 ### Which Minecraft version?
 
@@ -43,7 +43,7 @@ For the *server-required* mods, yes — the server checks that Fabric API, Cobbl
 
 ### Where's the full mod list?
 
-On the [Install](../install/index.md#required-mods) page — it's auto-generated from the pack's latest `modlist.html` export, so it stays in sync with what the server actually requires.
+On the [Install](../install/index.md#required-mods) page — it's fetched live from the server (reading each mod jar's metadata directly), so it stays in sync with what's actually installed on the server.
 
 ### Are Pokémon "safe" from PvP?
 

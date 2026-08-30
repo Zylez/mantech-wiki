@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Cracked Minecraft 1.20.1 Forge server running a heavily optimized version of the Cursed Walking modpack — tuned to be playable on lower-end computers. Server status, live activity, news, rules, install, and support.">
+        <meta name="description" content="How to install the Cobblemon server's modpack — with AutoModpack, as a static pack, or fully manually.">
       
       
       
@@ -27,7 +27,7 @@
     
     
       
-        <title>Install - Very Cool Cursed Walking Server</title>
+        <title>Install - Very Cool Cobblemon Server</title>
       
     
     
@@ -55,8 +55,6 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
-      <link rel="stylesheet" href="../stylesheets/cursedwalking.css">
-    
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -73,7 +71,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber">
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="yellow">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -82,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#install" class="md-skip">
+        <a href="#installing-the-modpack" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +96,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Very Cool Cursed Walking Server" class="md-header__button md-logo" aria-label="Very Cool Cursed Walking Server" data-md-component="logo">
+    <a href=".." title="Very Cool Cobblemon Server" class="md-header__button md-logo" aria-label="Very Cool Cobblemon Server" data-md-component="logo">
       
   <img src="../assets/logo.png" alt="logo">
 
@@ -111,7 +109,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Very Cool Cursed Walking Server
+            Very Cool Cobblemon Server
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -130,7 +128,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="red" data-md-color-accent="yellow"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -140,7 +138,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="amber"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="red" data-md-color-accent="yellow"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -355,12 +353,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Very Cool Cursed Walking Server" class="md-nav__button md-logo" aria-label="Very Cool Cursed Walking Server" data-md-component="logo">
+    <a href=".." title="Very Cool Cobblemon Server" class="md-nav__button md-logo" aria-label="Very Cool Cobblemon Server" data-md-component="logo">
       
   <img src="../assets/logo.png" alt="logo">
 
     </a>
-    Very Cool Cursed Walking Server
+    Very Cool Cobblemon Server
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -459,21 +457,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pick-your-install-path" class="md-nav__link">
+  <a href="#how-to-join" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pick your install path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#launchers-we-recommend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Launchers we recommend
+        How to Join
       
     </span>
   </a>
@@ -484,7 +471,7 @@
   <a href="#required-mods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required mods
+        Required Mods
       
     </span>
   </a>
@@ -492,10 +479,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resource-packs" class="md-nav__link">
+  <a href="#required-resource-packs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resource packs
+        Required Resource Packs
       
     </span>
   </a>
@@ -503,10 +490,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verify-your-install" class="md-nav__link">
+  <a href="#verifying-it-worked" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verify your install
+        Verifying it Worked
       
     </span>
   </a>
@@ -518,6 +505,17 @@
     <span class="md-ellipsis">
       
         Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still stuck?
       
     </span>
   </a>
@@ -669,21 +667,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#pick-your-install-path" class="md-nav__link">
+  <a href="#how-to-join" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pick your install path
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#launchers-we-recommend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Launchers we recommend
+        How to Join
       
     </span>
   </a>
@@ -694,7 +681,7 @@
   <a href="#required-mods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Required mods
+        Required Mods
       
     </span>
   </a>
@@ -702,10 +689,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#resource-packs" class="md-nav__link">
+  <a href="#required-resource-packs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Resource packs
+        Required Resource Packs
       
     </span>
   </a>
@@ -713,10 +700,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#verify-your-install" class="md-nav__link">
+  <a href="#verifying-it-worked" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Verify your install
+        Verifying it Worked
       
     </span>
   </a>
@@ -728,6 +715,17 @@
     <span class="md-ellipsis">
       
         Troubleshooting
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#still-stuck" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Still stuck?
       
     </span>
   </a>
@@ -751,142 +749,179 @@
 
 
 
-<h1 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h1>
-<p>Cursed Walking on this server is <strong>not the same pack you'd install from CurseForge</strong>. We stripped out ambience mods, shader mods, and other graphics-heavy content so the pack runs on modest hardware — most players see around <strong>60 FPS on 8 GB RAM</strong>. Content stays intact; visual bloat doesn't. Because of this, <strong>installing the official CurseForge modpack will not let you join</strong> — you'll get rejected on the connection mod check.</p>
-<p>The four setup paths below give you our modified pack instead. Pick whichever fits how you already play.</p>
-<div class="admonition warning">
-<p class="admonition-title">Two things that will break your install</p>
-<ol>
-<li><strong>Do not install OptiFine.</strong> It crashes with the shader/rendering stack that ships in Cursed Walking. Even though we've removed most graphics mods, the ones that remain still conflict with OptiFine.</li>
-<li><strong>The server runs Minecraft 1.20.1 on Forge.</strong> Wrong version, wrong loader (NeoForge/Fabric), or missing mods → rejected at connect.</li>
-</ol>
+<h1 id="installing-the-modpack">Installing the Modpack<a class="headerlink" href="#installing-the-modpack" title="Permanent link">&para;</a></h1>
+<p>Everything you need to get on the server. Pick whichever setup approach suits you — all four end with you on the server, and the server ships with <strong>AutoModpack</strong> so any of them stays in sync automatically once you connect.</p>
+<p>This is <strong>not the pack you'd install from Modrinth or CurseForge</strong>. We removed ambience mods, shader mods, and other graphics-heavy additions so the pack runs at around <strong>60 FPS on 8 GB RAM</strong> on typical machines. Content mirrors <a href="https://modrinth.com/modpack/cobbleverse">Cobbleverse</a>; the visual bloat doesn't. Because of this, <strong>installing the official pack will not let you join</strong> — you'll get rejected on the connection mod check. Use one of the setup paths below to get our version instead.</p>
+<div class="admonition tip">
+<p class="admonition-title">Which method should I pick?</p>
+<ul>
+<li><strong>New to modded Minecraft, or you just want to play?</strong> → Method 1 (pre-built AutoModpack pack).</li>
+<li><strong>Already have a Fabric instance you like?</strong> → Method 2 (add AutoModpack to it).</li>
+<li><strong>Prefer a static, self-contained install?</strong> → Method 3 (standard modpack).</li>
+<li><strong>Want total control over every file?</strong> → Method 4 (manual).</li>
+</ul>
 </div>
-<h2 id="pick-your-install-path">Pick your install path<a class="headerlink" href="#pick-your-install-path" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="preloaded-modpack" name="__tabbed_1" type="radio" /><input id="automodpack" name="__tabbed_1" type="radio" /><input id="standard-manual-with-mod-list" name="__tabbed_1" type="radio" /><input id="fully-manual" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="preloaded-modpack">Preloaded modpack</label><label for="automodpack">AutoModpack</label><label for="standard-manual-with-mod-list">Standard (manual with mod list)</label><label for="fully-manual">Fully manual</label></div>
+<h2 id="how-to-join">How to Join<a class="headerlink" href="#how-to-join" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="1-pre-built-automodpack-modpack-easiest" name="__tabbed_1" type="radio" /><input id="2-add-automodpack-to-your-own-instance" name="__tabbed_1" type="radio" /><input id="3-standard-modpack-no-automodpack" name="__tabbed_1" type="radio" /><input id="4-fully-manual" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="1-pre-built-automodpack-modpack-easiest">1. Pre-built AutoModpack modpack (easiest)</label><label for="2-add-automodpack-to-your-own-instance">2. Add AutoModpack to your own instance</label><label for="3-standard-modpack-no-automodpack">3. Standard modpack (no AutoModpack)</label><label for="4-fully-manual">4. Fully manual</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><strong>Easiest — everything set up already.</strong> A pre-configured Forge 1.20.1 instance with AutoModpack, our modified mod list, and any needed configs already inside. Import into your launcher and launch.</p>
-<div class="admonition note">
-<p class="admonition-title">Download link not currently available</p>
-<p>The preloaded pack is offered when we have a working build to share. Use the <strong>AutoModpack</strong> or <strong>Standard</strong> tab in the meantime — both get you to the same place.</p>
-</div>
-<p>When available, the flow is:</p>
+<p>This is a clean Fabric instance with <strong>AutoModpack pre-installed</strong> and the required client-side resource packs already in place. Once launched, connecting to the server pulls in everything else automatically. Nothing to configure.</p>
+<p><strong>Download:</strong><br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v210.7l-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 242.7zM64 320c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64h-46.9l-56.6 56.6c-31.2 31.2-81.9 31.2-113.1 0L110.9 320zm304 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> <a class="modpack-link" href="#" title="Replace with your actual link">Cobblemon Server – AutoModpack Base (.zip)</a></p>
+<p><strong>Steps (any CurseForge-aware launcher):</strong></p>
 <ol>
-<li>Download the preloaded modpack zip from the link posted here.</li>
-<li>In your launcher: <strong>Add instance → Import from zip</strong> and select the file.</li>
-<li>Give it at least <strong>6 GB</strong> of RAM (<strong>8 GB</strong> if you have it).</li>
-<li>Launch and add the server (address on the <a href="../">home page</a>).</li>
+<li>In your launcher, choose <strong>Import modpack</strong> (or <strong>Add instance → From .zip</strong>).</li>
+<li>Select the downloaded <code>.zip</code>.</li>
+<li>Wait for the launcher to build the instance.</li>
+<li>Launch the instance.</li>
+<li><strong>Multiplayer → Add Server</strong>, enter the server IP from the <a href="../">home page</a>.</li>
+<li>On first connect, AutoModpack asks you to verify the server's certificate fingerprint. Confirm it.</li>
+<li>AutoModpack downloads the current modpack. When it's done, restart Minecraft. Done.</li>
 </ol>
+<p><strong>For SKLauncher / TLauncher (no CurseForge-format import):</strong><br />
+Extract the <code>.zip</code> manually and copy the <code>mods/</code>, <code>config/</code>, and <code>resourcepacks/</code> folders into your Fabric profile's <code>.minecraft</code> folder. Then launch that Fabric profile. If you'd rather skip the pre-built pack entirely, the <strong>Fully manual</strong> tab has step-by-step instructions.</p>
 </div>
 <div class="tabbed-block">
-<p><strong>Recommended for most players.</strong> Install AutoModpack once, and it syncs the mods from the server on every launch. Version bumps happen automatically — you don't touch the mods folder yourself.</p>
+<p>If you already have a working Fabric instance (any version, any launcher), you don't need any of our downloads. Just install AutoModpack and connect.</p>
+<p><strong>Steps:</strong></p>
 <ol>
-<li>In your launcher, create a <strong>Forge 1.20.1</strong> instance. See <em>Launchers we recommend</em> below if you don't already have one set up.</li>
-<li>Allocate <strong>at least 6 GB</strong> of RAM to the instance (8 GB is comfortable).</li>
-<li>Download AutoModpack for <strong>Forge 1.20.1</strong> from <a href="https://modrinth.com/mod/automodpack">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/automodpack">CurseForge</a>.</li>
-<li>Drop the <code>.jar</code> into your instance's <code>mods/</code> folder.</li>
-<li>Launch the instance. When you first connect to the server, AutoModpack will download the rest of the mod list into a subfolder and prompt you to restart.</li>
-<li>Restart, connect again — you're in.</li>
+<li>Install <strong>Fabric Loader</strong> for the Minecraft version the server is running (check the <a href="../#live-server-status">status box on the home page</a>).</li>
+<li>Install <strong>Fabric API</strong> for the same version. Grab it from <a href="https://modrinth.com/mod/fabric-api">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/fabric-api">CurseForge</a> and place the <code>.jar</code> in your instance's <code>mods/</code> folder.</li>
+<li>Download <strong>AutoModpack</strong> from <a href="https://modrinth.com/mod/automodpack">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/automodpack">CurseForge</a>. Match the Minecraft version.</li>
+<li>Drop the AutoModpack <code>.jar</code> into the same <code>mods/</code> folder.</li>
+<li>Launch the instance.</li>
+<li><strong>Multiplayer → Add Server</strong>, enter the server IP from the <a href="../">home page</a>.</li>
+<li>On first connect: verify the server's fingerprint → confirm the modpack install → wait for the download → restart Minecraft.</li>
 </ol>
-<p>Any <strong>client-side-only</strong> mods you add (Sodium-alternatives, cosmetic HUDs, keybind managers) can live alongside AutoModpack's synced mods without issue.</p>
+<div class="admonition success">
+<p class="admonition-title">Your own mods stay untouched</p>
+<p>AutoModpack downloads the server's synced files into <code>~/.minecraft/automodpack/modpacks/…</code>, isolated from your instance's regular <code>mods/</code> folder. Any client-side-only mods you've added — minimaps, shader loaders, cosmetic mods — keep working alongside the synced modpack.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Even quicker: AutoModpack's own Fabric installer</p>
+<p>AutoModpack ships a modified <a href="https://modrinth.com/mod/automodpack">Fabric installer</a> that installs Fabric loader and AutoModpack in one step. If you're setting up a fresh instance from scratch, that saves you steps 1–4 above.</p>
+</div>
 </div>
 <div class="tabbed-block">
-<p>Skip AutoModpack. Build the mod list yourself from the live list further down this page. Fine for people who want full control over what's in the mods folder, or who don't want AutoModpack running.</p>
+<p>A regular CurseForge-format modpack containing a <code>modlist.html</code> — your launcher fetches every mod from Modrinth and CurseForge at import time and locks the versions in. Once installed, you connect like it's a vanilla server. No live sync; when the server updates its mods, you'll need to reimport a new version of this pack.</p>
+<p><strong>Download:</strong><br />
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 32c0-17.7-14.3-32-32-32s-32 14.3-32 32v210.7l-41.4-41.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l96 96c12.5 12.5 32.8 12.5 45.3 0l96-96c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 242.7zM64 320c-35.3 0-64 28.7-64 64v32c0 35.3 28.7 64 64 64h320c35.3 0 64-28.7 64-64v-32c0-35.3-28.7-64-64-64h-46.9l-56.6 56.6c-31.2 31.2-81.9 31.2-113.1 0L110.9 320zm304 56a24 24 0 1 1 0 48 24 24 0 1 1 0-48"/></svg></span> <a class="modpack-link" href="#" title="Replace with your actual link">Cobblemon Server – Standard Modpack (.zip)</a></p>
+<p><strong>Steps (CurseForge, ATLauncher, Prism, GDLauncher, or MultiMC):</strong></p>
 <ol>
-<li>In your launcher, create a <strong>Forge 1.20.1</strong> instance.</li>
-<li>Allocate <strong>at least 6 GB</strong> of RAM (8 GB comfortable).</li>
-<li>Scroll to <em><a href="#required-mods">Required mods</a></em> below. Every chip is a mod — click through, download the version listed, drop each <code>.jar</code> into the instance's <code>mods/</code> folder.</li>
-<li>Launch and connect.</li>
+<li>In your launcher, choose <strong>Import modpack</strong> (or <strong>Add instance → From .zip</strong>).</li>
+<li>Select the downloaded <code>.zip</code>.</li>
+<li>The launcher reads the <code>modlist.html</code>/<code>manifest.json</code> and downloads every mod from its source. This usually takes a few minutes.</li>
+<li>Launch the instance.</li>
+<li><strong>Multiplayer → Add Server</strong>, enter the server IP from the <a href="../">home page</a>.</li>
 </ol>
-<p>You'll need to re-do the sync any time we bump the pack. Consider the AutoModpack tab if that sounds annoying.</p>
+<div class="admonition warning">
+<p class="admonition-title">SKLauncher / TLauncher don't import CurseForge modpacks natively</p>
+<p>For those launchers, use one of the CurseForge-aware launchers above just for the import step, then point your usual launcher at the resulting instance folder. Or switch to the <strong>Fully manual</strong> tab above.</p>
+</div>
 </div>
 <div class="tabbed-block">
-<p>No launcher at all. Straight Minecraft + Forge installer + manual mods. For portable setups, unusual OSes, or when you want to know every file that landed on disk.</p>
+<p>Install every mod and resource pack by hand. Most control, most work. The lists further down this page are the source of truth — copy every mod's <code>.jar</code> into your instance's <code>mods/</code> folder and every resource pack's <code>.zip</code> into <code>resourcepacks/</code>.</p>
+<p><strong>Steps:</strong></p>
 <ol>
-<li>Install <strong>Java 17</strong> (Adoptium/Temurin recommended).</li>
-<li>Grab the <strong>Forge 1.20.1</strong> installer from the <a href="https://files.minecraftforge.net/">Forge downloads page</a> — pick the recommended build for 1.20.1.</li>
-<li>Run the installer → <strong>Install client</strong> into a fresh game directory.</li>
-<li>In that directory, create a <code>mods/</code> folder. Download every mod from <em><a href="#required-mods">Required mods</a></em> into it.</li>
-<li>Point your Minecraft launcher (vanilla, or whatever) at the Forge 1.20.1 profile and launch.</li>
-<li>Connect to the server.</li>
+<li>In your launcher, install <strong>Fabric Loader</strong> for the Minecraft version the server is running (check the <a href="../#live-server-status">status box</a>).</li>
+<li>Install <strong>Fabric API</strong> — put its <code>.jar</code> into your instance's <code>mods/</code> folder.</li>
+<li>From the <a href="#required-mods">Required mods</a> section below, download each mod's <code>.jar</code> (match the correct Minecraft version). Drop them all into <code>mods/</code>.</li>
+<li>From the <a href="#required-resource-packs">Required resource packs</a> section below, download each <code>.zip</code> and drop them into <code>resourcepacks/</code>.</li>
+<li>Launch the instance. In Minecraft's <strong>Options → Resource Packs</strong>, enable each pack.</li>
+<li><strong>Multiplayer → Add Server</strong>, enter the server IP from the <a href="../">home page</a>.</li>
 </ol>
-<p>This is the most work. Use it only when the other tabs don't apply.</p>
+<p>Your Minecraft instance folder is usually at:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>C:\Users\%USERNAME%\AppData\Roaming\.minecraft
+</span></code></pre></div>
+<p>On some launchers (Prism, MultiMC) the profile has its own <code>minecraft/</code> folder inside the instance directory. Check your launcher's docs if you're unsure.</p>
 </div>
 </div>
 </div>
-<h2 id="launchers-we-recommend">Launchers we recommend<a class="headerlink" href="#launchers-we-recommend" title="Permanent link">&para;</a></h2>
-<p>Any launcher that can install <strong>Forge 1.20.1</strong> and connect to a <strong>cracked / offline-mode</strong> server will work. Popular choices among players:</p>
-<ul>
-<li><strong>CurseForge App</strong> — free, imports Forge instances easily, supports offline mode.</li>
-<li><strong>Prism Launcher</strong> — open source, actively maintained, cracked-friendly.</li>
-<li><strong>TLauncher</strong> — well-known among cracked players; has built-in Forge install.</li>
-<li><strong>ATLauncher</strong> — supports Forge and offline mode.</li>
-<li><strong>SKLauncher</strong> — lightweight, cracked-friendly.</li>
-</ul>
-<p>If you're brand new to modded Minecraft, the CurseForge App or Prism Launcher are the two smoothest choices.</p>
-<h2 id="required-mods">Required mods<a class="headerlink" href="#required-mods" title="Permanent link">&para;</a></h2>
-<p>Every mod currently on the server, pulled live from the actual <code>mods/</code> folder on the box. Sync happens every five minutes.</p>
+<h2 id="required-mods">Required Mods<a class="headerlink" href="#required-mods" title="Permanent link">&para;</a></h2>
+<p>The list below is fetched live from the server. Whenever the server's mod folder changes, this list catches up on the next request (the API caches for 5 minutes to avoid hammering the server). Each entry links to the mod's official page — CurseForge, Modrinth, GitHub, or wherever the mod author publishes it.</p>
 <div id="mod-list"
      class="modlist"
-     data-modlist-src="https://man.servegame.com/api/modlist?profile=cursedwalking"></div>
-
-<div class="admonition tip">
-<p class="admonition-title">Client-side mods are welcome</p>
-<p>You can add any client-side-only mod on top of this list — cosmetic HUDs, keybind managers, minimap replacements, and so on. Only mods that add content, change recipes, or affect the world will get you rejected by the server's mod check.</p>
+     data-modlist-src="https://man.servegame.com/api/modlist"
+     aria-live="polite">
+    <p class="modlist-loading">Loading mod list…</p>
 </div>
-<h2 id="resource-packs">Resource packs<a class="headerlink" href="#resource-packs" title="Permanent link">&para;</a></h2>
-<p>The pack ships with what it needs bundled in. <strong>You should not need to install anything extra to connect.</strong> If we ever add a server-side pack, it'll show up here.</p>
+
+<div class="admonition note">
+<p class="admonition-title">Version matching</p>
+<p>The mod list doesn't include per-mod version numbers because those move fast. Always pick the <code>.jar</code> for the same Minecraft version the server is currently running — check the <a href="../#live-server-status">status box on the home page</a>.</p>
+</div>
+<h2 id="required-resource-packs">Required Resource Packs<a class="headerlink" href="#required-resource-packs" title="Permanent link">&para;</a></h2>
+<p>Resource packs are needed to correctly display the custom content the server uses. Enable each in <strong>Options → Resource Packs</strong> after adding.</p>
+<!--
+    Maintain this table manually — resource packs don't come with a
+    modlist-style file, so this is the source of truth for both the
+    site and any player doing a manual install.
+
+    Format:
+      | Pack | Source | Download |
+-->
+
 <table>
 <thead>
 <tr>
 <th>Pack</th>
-<th>Required?</th>
-<th>Where to get it</th>
+<th>Source</th>
+<th>Download</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><em>None currently</em></td>
-<td>—</td>
-<td>—</td>
+<td>Complete Cobblemon Collection</td>
+<td>Modrinth</td>
+<td><a href="https://modrinth.com/datapack/complete-cobblemon-collection-myths-and-legends-compat">Link</a></td>
+</tr>
+<tr>
+<td>COBBLEVERSE RCTmod RP</td>
+<td>Modpack</td>
+<td><a href="https://modrinth.com/modpack/cobbleverse">Link</a></td>
 </tr>
 </tbody>
 </table>
-<h2 id="verify-your-install">Verify your install<a class="headerlink" href="#verify-your-install" title="Permanent link">&para;</a></h2>
-<p>Run through these before your first connection attempt. Most first-time issues fall out of exactly one of them.</p>
+<h2 id="verifying-it-worked">Verifying it Worked<a class="headerlink" href="#verifying-it-worked" title="Permanent link">&para;</a></h2>
+<p>Once the game loads:</p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Minecraft version reads <strong>1.20.1</strong>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Loader reads <strong>Forge</strong> (not NeoForge, not Fabric).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Allocated <strong>at least 6 GB</strong> of RAM to the instance.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every mod in the list above is present in your <code>mods/</code> folder — or AutoModpack has synced them.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>OptiFine is not installed</strong> anywhere in the mods folder.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> You logged in with any Minecraft profile — cracked accounts are fine.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Bottom-left of the main menu shows <code>Fabric API</code> (and, if you used AutoModpack, an AutoModpack notice).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> The main menu has a <strong>Mods</strong> button showing the mod list.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Server IP appears as compatible in your multiplayer list.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> If you connected via AutoModpack, the first connection prompts a fingerprint check and a modpack confirmation before downloading.</li>
 </ul>
+<p>If any of these are missing, jump to <a href="#troubleshooting">Troubleshooting</a> below.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <details class="question">
-<summary>Game crashes on launch with a shader or rendering error</summary>
-<p>OptiFine is almost certainly in your mods folder. Remove it. The pack already includes what it needs for shaders — no third-party additions needed.</p>
-</details>
-<p>??? question '"Connection refused" or "Server not responding"'
-    Check the <a href="../">home page</a> — the server status card shows if the box is down. This modpack is in testing and the server runs on a schedule, not 24/7. If the card says online and you still can't connect: double-check the address for typos, verify the mod list matches, and try a fresh launcher restart.</p>
-<p>??? question '"Missing mods" or "Mod rejections" on connect'
-    Your mods folder doesn't match the server's list. Either sync via AutoModpack, or diff your folder against the live <em>Required mods</em> list above and add whatever's missing.</p>
-<details class="question">
-<summary>Extreme lag or slow chunk loading</summary>
-<p>Give the instance more memory — 8 GB is safe on most machines with 16 GB total. If you're on integrated graphics, expect low framerates during horde events; nothing we can do about that server-side.</p>
+<summary>\"Outdated server\" or \"Outdated client\" in the multiplayer list</summary>
+<p>Your Fabric profile is running a different Minecraft version than the server. Check the version in the <a href="../#live-server-status">home page status box</a> and reinstall Fabric for that exact version.</p>
 </details>
 <details class="question">
-<summary>Java version errors</summary>
-<p>Cursed Walking on 1.20.1 needs <strong>Java 17</strong>. The CurseForge app and Prism handle this automatically. For manual installs, install Adoptium/Temurin 17 and point your launcher at it.</p>
+<summary>Game crashes on launch</summary>
+<p>Usually a mismatch between the pack version and the Minecraft version. Reinstall the pack (or reinstall Fabric + redownload mods) for the version the server is currently running.</p>
 </details>
 <details class="question">
-<summary>AutoModpack refuses to download</summary>
-<p>Make sure your AutoModpack version is <strong>for Forge</strong>, not Fabric or NeoForge. Also verify the instance actually reached the server once — AutoModpack only knows what to fetch after a successful handshake.</p>
+<summary>\"Server modded, this client is vanilla\"</summary>
+<p>Fabric loaded, but no mods did. Double-check that your <code>mods/</code> folder ended up in the actual profile folder your launcher uses. In SKLauncher/TLauncher, this is usually <code>.minecraft</code>; in Prism/MultiMC it's inside the instance's <code>minecraft/</code> subfolder.</p>
 </details>
 <details class="question">
-<summary>I tried everything and it still won't work</summary>
-<p>Head over to <a href="../support/">Support</a> — bring your latest crash log. Without it we're guessing.</p>
+<summary>AutoModpack asks about a certificate fingerprint — is that safe?</summary>
+<p>Yes. AutoModpack encrypts its downloads and asks you to verify the server on first connect so nobody can substitute their own modpack. Just confirm and it'll remember for future connects.</p>
 </details>
+<details class="question">
+<summary>AutoModpack downloaded the pack but the game is still \"vanilla\"</summary>
+<p>You need to <strong>restart Minecraft</strong> after the download finishes. AutoModpack loads the downloaded modpack on next launch — not mid-session.</p>
+</details>
+<details class="question">
+<summary>The modpack I imported has no mods after install</summary>
+<p>Some CurseForge packs only ship a <code>manifest.json</code> for licensing reasons. Use a CurseForge-aware launcher (CurseForge, ATLauncher, Prism, GDLauncher) — those fetch the actual mod files automatically. SKLauncher and TLauncher can't do this on their own.</p>
+</details>
+<details class="question">
+<summary>The mod list on this page didn't load</summary>
+<p>The list is fetched from the server's <code>/api/modlist</code> endpoint. If the API is unreachable — server offline, network hiccup — the list won't render. Use one of the AutoModpack methods above in the meantime; they don't rely on this list.</p>
+</details>
+<h2 id="still-stuck">Still stuck?<a class="headerlink" href="#still-stuck" title="Permanent link">&para;</a></h2>
+<p>Head to the <a href="../support/">Support</a> page to reach an admin.</p>
 
 
 
@@ -907,8 +942,6 @@
             </div>
           
           
-  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
-
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -997,7 +1030,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "content.tooltips", "content.tabs.link", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.indexes", "navigation.footer", "toc.follow", "content.code.copy", "content.code.annotate", "content.tooltips", "search.suggest", "search.highlight", "search.share"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>

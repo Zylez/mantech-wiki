@@ -17,6 +17,12 @@ The server is owned and operated exclusively by **Auzer1** and **FunOD**. There 
 
 Exploiting isn't punishable, but is automatically prevented by the AntiCheat where possible. Any exploits that bypass the AntiCheat aren't punishable either.
 
+### Why is your version of Cobblemon different from Cobbleverse?
+
+We removed the ambience mods, shader mods, and other graphics-enhancement mods from the pack. Content — Pokémon, mechanics, structures, progression — is intact. What's gone is the visual bloat that makes the official pack unplayable on lower-end hardware.
+
+The point is inclusivity: **anyone with a modest laptop should be able to play here**. We measure success in "does it run at 60 FPS on 4 GB RAM," not "does it have the prettiest fog." This is the same reason our other servers (anarchy and Cursed Walking) also run modified, cracked-friendly setups.
+
 ### Are there plans to increase the player limit?
 
 Not at the moment. We prefer to keep the server manageable and within a resource range we can personally oversee.
@@ -37,6 +43,10 @@ Or you can install every file manually. The list of required mods is fetched liv
 
 **Minecraft 1.21.1**, matching Cobblemon's supported version. We plan to stay here for a while — Cobblemon's release cadence means the pack is stable on 1.21.1 for the foreseeable future. Match it exactly when installing Fabric; adjacent Minecraft versions won't connect.
 
+### How much RAM does my machine need?
+
+Allocate at least **4 GB** to the instance. Less than 4 GB and you'll stutter through chunk loads.
+
 ### Do I have to use the exact pack we provide?
 
 For the *server-required* mods, yes — the server checks that Fabric API, Cobblemon, and the rest of the sync list match. Adding *client-side-only* mods (shaders, minimap, cosmetics) is fine as long as they don't affect server sync. If you're using AutoModpack, your own additions live in your regular `.minecraft/mods/` folder and don't conflict with what AutoModpack downloads.
@@ -44,14 +54,6 @@ For the *server-required* mods, yes — the server checks that Fabric API, Cobbl
 ### Where's the full mod list?
 
 On the [Install](../install/index.md#required-mods) page — it's fetched live from the server (reading each mod jar's metadata directly), so it stays in sync with what's actually installed on the server.
-
-### Are Pokémon "safe" from PvP?
-
-No. Following the [Rules](../rules/index.md), anything you leave unattended can be attacked, stolen from, or killed. Keep your team on you.
-
-### Is 24/7 uptime guaranteed yet?
-
-Not yet — the modded server is still being tuned. Expect occasional restarts. Check the [News](../news/index.md) page for downtime notices.
 
 ## Playing on the Server
 

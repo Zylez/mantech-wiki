@@ -7,6 +7,8 @@ description: How to install the Cobblemon server's modpack — with AutoModpack,
 
 Everything you need to get on the server. Pick whichever setup approach suits you — all four end with you on the server, and the server ships with **AutoModpack** so any of them stays in sync automatically once you connect.
 
+This is **not the pack you'd install from Modrinth or CurseForge**. We removed ambience mods, shader mods, and other graphics-heavy additions so the pack runs at around **60 FPS on 8 GB RAM** on typical machines. Content mirrors [Cobbleverse](https://modrinth.com/modpack/cobbleverse); the visual bloat doesn't. Because of this, **installing the official pack will not let you join** — you'll get rejected on the connection mod check. Use one of the setup paths below to get our version instead.
+
 !!! tip "Which method should I pick?"
 
     - **New to modded Minecraft, or you just want to play?** → Method 1 (pre-built AutoModpack pack).

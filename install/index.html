@@ -752,7 +752,7 @@
 
 
 <h1 id="install">Install<a class="headerlink" href="#install" title="Permanent link">&para;</a></h1>
-<p>Cursed Walking on this server is <strong>not the same pack you'd install from CurseForge</strong>. We stripped out ambience mods, shader mods, and other graphics-heavy content so the pack runs on modest hardware — most players see around <strong>60 FPS on 8 GB RAM</strong>. Content stays intact; visual bloat doesn't. Because of this, <strong>installing the official CurseForge modpack will not let you join</strong> — you'll get rejected on the connection mod check.</p>
+<p>Cursed Walking on this server is <strong>not the same pack you'd install from CurseForge</strong>. We stripped out ambience mods, shader mods, and other graphics-heavy content so the pack runs on modest hardware — most players see around <strong>60 FPS on 4 GB RAM</strong>. Content stays intact; visual bloat doesn't. Because of this, <strong>installing the official CurseForge modpack will not let you join</strong> — you'll get rejected on the connection mod check.</p>
 <p>The four setup paths below give you our modified pack instead. Pick whichever fits how you already play.</p>
 <div class="admonition warning">
 <p class="admonition-title">Two things that will break your install</p>
@@ -762,7 +762,7 @@
 </ol>
 </div>
 <h2 id="pick-your-install-path">Pick your install path<a class="headerlink" href="#pick-your-install-path" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="preloaded-modpack" name="__tabbed_1" type="radio" /><input id="automodpack" name="__tabbed_1" type="radio" /><input id="standard-manual-with-mod-list" name="__tabbed_1" type="radio" /><input id="fully-manual" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="preloaded-modpack">Preloaded modpack</label><label for="automodpack">AutoModpack</label><label for="standard-manual-with-mod-list">Standard (manual with mod list)</label><label for="fully-manual">Fully manual</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="preloaded-modpack" name="__tabbed_1" type="radio" /><input id="automodpack" name="__tabbed_1" type="radio" /><input id="standard" name="__tabbed_1" type="radio" /><input id="fully-manual" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="preloaded-modpack">Preloaded modpack</label><label for="automodpack">AutoModpack</label><label for="standard">Standard</label><label for="fully-manual">Fully manual</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>Easiest — everything set up already.</strong> A pre-configured Forge 1.20.1 instance with AutoModpack, our modified mod list, and any needed configs already inside. Import into your launcher and launch.</p>
@@ -774,7 +774,7 @@
 <ol>
 <li>Download the preloaded modpack zip from the link posted here.</li>
 <li>In your launcher: <strong>Add instance → Import from zip</strong> and select the file.</li>
-<li>Give it at least <strong>6 GB</strong> of RAM (<strong>8 GB</strong> if you have it).</li>
+<li>Give it at least <strong>4 GB</strong> of RAM.</li>
 <li>Launch and add the server (address on the <a href="../">home page</a>).</li>
 </ol>
 </div>
@@ -782,7 +782,7 @@
 <p><strong>Recommended for most players.</strong> Install AutoModpack once, and it syncs the mods from the server on every launch. Version bumps happen automatically — you don't touch the mods folder yourself.</p>
 <ol>
 <li>In your launcher, create a <strong>Forge 1.20.1</strong> instance. See <em>Launchers we recommend</em> below if you don't already have one set up.</li>
-<li>Allocate <strong>at least 6 GB</strong> of RAM to the instance (8 GB is comfortable).</li>
+<li>Allocate <strong>at least 4 GB</strong> of RAM to the instance.</li>
 <li>Download AutoModpack for <strong>Forge 1.20.1</strong> from <a href="https://modrinth.com/mod/automodpack">Modrinth</a> or <a href="https://www.curseforge.com/minecraft/mc-mods/automodpack">CurseForge</a>.</li>
 <li>Drop the <code>.jar</code> into your instance's <code>mods/</code> folder.</li>
 <li>Launch the instance. When you first connect to the server, AutoModpack will download the rest of the mod list into a subfolder and prompt you to restart.</li>
@@ -791,14 +791,14 @@
 <p>Any <strong>client-side-only</strong> mods you add (Sodium-alternatives, cosmetic HUDs, keybind managers) can live alongside AutoModpack's synced mods without issue.</p>
 </div>
 <div class="tabbed-block">
-<p>Skip AutoModpack. Build the mod list yourself from the live list further down this page. Fine for people who want full control over what's in the mods folder, or who don't want AutoModpack running.</p>
+<p>Import the modpack into your launcher containing the forge version/loader, AutoModpack mod &amp; server list. This is currently the fastest path to enter the server:
+<a href="https://e.pcloud.link/publink/show?code=XZEm577Z9qD4f2ibBE0Qmqhfk4YszBgRfGpV">Download Modpack</a> </p>
 <ol>
-<li>In your launcher, create a <strong>Forge 1.20.1</strong> instance.</li>
-<li>Allocate <strong>at least 6 GB</strong> of RAM (8 GB comfortable).</li>
-<li>Scroll to <em><a href="#required-mods">Required mods</a></em> below. Every chip is a mod — click through, download the version listed, drop each <code>.jar</code> into the instance's <code>mods/</code> folder.</li>
-<li>Launch and connect.</li>
+<li>Download the preloaded modpack zip from the link posted here.</li>
+<li>In your launcher: <strong>Add instance → Import from zip</strong> and select the file.</li>
+<li>Give it at least <strong>4 GB</strong> of RAM.</li>
+<li>Launch and add the server (address on the <a href="../">home page</a>).</li>
 </ol>
-<p>You'll need to re-do the sync any time we bump the pack. Consider the AutoModpack tab if that sounds annoying.</p>
 </div>
 <div class="tabbed-block">
 <p>No launcher at all. Straight Minecraft + Forge installer + manual mods. For portable setups, unusual OSes, or when you want to know every file that landed on disk.</p>
@@ -857,7 +857,7 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Minecraft version reads <strong>1.20.1</strong>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Loader reads <strong>Forge</strong> (not NeoForge, not Fabric).</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Allocated <strong>at least 6 GB</strong> of RAM to the instance.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Allocated <strong>at least 4 GB</strong> of RAM to the instance.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Every mod in the list above is present in your <code>mods/</code> folder — or AutoModpack has synced them.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>OptiFine is not installed</strong> anywhere in the mods folder.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> You logged in with any Minecraft profile — cracked accounts are fine.</li>
@@ -873,7 +873,7 @@
     Your mods folder doesn't match the server's list. Either sync via AutoModpack, or diff your folder against the live <em>Required mods</em> list above and add whatever's missing.</p>
 <details class="question">
 <summary>Extreme lag or slow chunk loading</summary>
-<p>Give the instance more memory — 8 GB is safe on most machines with 16 GB total. If you're on integrated graphics, expect low framerates during horde events; nothing we can do about that server-side.</p>
+<p>Give the instance more memory — 4 GB is safe on most machines. If you're on integrated graphics, expect low framerates during horde events; nothing we can do about that server-side.</p>
 </details>
 <details class="question">
 <summary>Java version errors</summary>
